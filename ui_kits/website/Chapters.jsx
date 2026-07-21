@@ -17,7 +17,7 @@ function Stage({ id, no, small, title, copy, src, imageOpacity = 1 }) {
         <h2 style={{ margin: "14px 0 0", color: "#fff", fontSize: "clamp(44px, 4.6vw, 72px)", fontWeight: 800, lineHeight: 0.9, textTransform: "uppercase" }}>{title}</h2>
         <p style={{ maxWidth: 440, margin: "22px 0 0", color: "rgb(255 255 255 / 74%)", fontSize: 15, lineHeight: 1.55 }}>{copy}</p>
       </div>
-      <div style={{ position: "relative", overflow: "hidden", background: "#070807" }}>
+      <div style={{ position: "relative", overflow: "hidden", background: "var(--ink)" }}>
         <img src={src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: imageOpacity, filter: "saturate(.82) contrast(1.03)" }} />
         <span aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgb(16 20 17 / 55%), transparent 42%)" }} />
       </div>
@@ -160,9 +160,9 @@ function Chapters({ active, setActive }) {
       <div style={{ position: "sticky", zIndex: 25, top: 0 }}>
         <ChapterNav chapters={CH} active={active} onSelect={(id) => { setActive(id); const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop, behavior: "smooth" }); }} />
       </div>
-      <Stage id="tasks" no="01" small="Hand over recurring preparation" title="Take over tasks" copy="The workflow recognises, organises and prepares. Your team reviews, decides and moves the work forward." src="../../assets/tasks-digital-workflow.jpg" imageOpacity={0.5} />
+      <Stage id="tasks" no="01" small="Hand over recurring preparation" title="Take over tasks" copy="The workflow recognises, organises and prepares. Your team reviews, decides and moves the work forward." src="../../assets/tasks-digital-workflow.jpg" imageOpacity={0.3} />
       <CaseDetail />
-      <Stage id="knowledge" no="02" small="Answers from the right context" title="Make knowledge available" copy="Links, PDFs, photos and notes become useful exactly where the team needs a reliable answer." src="../../assets/knowledge-digital-brain.jpg" />
+      <Stage id="knowledge" no="02" small="Answers from the right context" title="Make knowledge available" copy="Links, PDFs, photos and notes become useful exactly where the team needs a reliable answer." src="../../assets/knowledge-digital-brain.jpg" imageOpacity={0.3} />
       <KnowledgeDetail />
       <Stage id="workflows" no="03" small="Handoffs without duplicate work" title="Connect workflows" copy="Information moves completely between the systems involved — and stays with the right customer or project, available to the whole team." src="../../assets/clear-route.jpg" />
       <SystemsDetail />
