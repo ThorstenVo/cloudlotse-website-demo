@@ -160,7 +160,7 @@ function Chapters({ active, setActive }) {
       <div style={{ position: "sticky", zIndex: 25, top: 0 }}>
         <ChapterNav chapters={CH} active={active} onSelect={(id) => { setActive(id); const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop, behavior: "smooth" }); }} />
       </div>
-      <Stage id="tasks" no="01" small="Hand over recurring preparation" title="Take over tasks" copy="The workflow recognises, organises and prepares. Your team reviews, decides and moves the work forward." src="../../assets/factory.jpg" />
+      <Stage id="tasks" no="01" small="Hand over recurring preparation" title="Take over tasks" copy="The workflow recognises, organises and prepares. Your team reviews, decides and moves the work forward." src="../../assets/tasks-digital-workflow.jpg" />
       <CaseDetail />
       <Stage id="knowledge" no="02" small="Answers from the right context" title="Make knowledge available" copy="Links, PDFs, photos and notes become useful exactly where the team needs a reliable answer." src="../../assets/knowledge-digital-brain.jpg" />
       <KnowledgeDetail />
