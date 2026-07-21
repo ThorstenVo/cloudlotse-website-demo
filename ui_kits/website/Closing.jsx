@@ -10,7 +10,7 @@ function Trust() {
         <span style={{ color: "var(--signal)", fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".04em" }}>Trust &amp; control</span>
         <h2 style={{ maxWidth: 940, margin: "14px 0 20px", fontSize: "clamp(38px, 4.4vw, 64px)", fontWeight: 800, lineHeight: 0.96, textTransform: "uppercase" }}>Your customer data stays <em style={{ color: "var(--signal)", fontStyle: "normal" }}>where it belongs.</em></h2>
         <p style={{ maxWidth: 640, color: "#4d5650", fontSize: 16, lineHeight: 1.6, margin: "0 0 44px" }}>The operating model fits the task — not the other way around. Choose how and where each workflow runs, based on the data, risk and level of control you need.</p>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)" }}>
+        <div className="cl-trust-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)" }}>
           {[
             { loc: "EU · managed", h: "Private cloud", li: ["Runs in a dedicated EU environment", "Data isolated per customer", "No shared multi-tenant models"] },
             { loc: "On-prem · your infra", h: "Self-hosted", li: ["Runs inside your own infrastructure", "Nothing leaves your network", "Open-source foundation you can audit"] },
@@ -48,7 +48,7 @@ function Final() {
       <span aria-hidden="true" style={{ position: "absolute", zIndex: 2, inset: 0, background: "linear-gradient(90deg, rgb(3 4 3 / 96%), rgb(3 4 3 / 70%) 55%, rgb(3 4 3 / 10%))" }} />
       <div style={{ ...shell, position: "relative", zIndex: 5 }}>
         <span style={{ display: "block", marginBottom: 24, color: "var(--signal)", fontSize: 10, fontWeight: 800, textTransform: "uppercase" }}>A useful first step</span>
-        <h2 style={{ maxWidth: 1020, margin: 0, fontSize: "clamp(54px, 7.5vw, 106px)", fontWeight: 800, lineHeight: 0.89, textTransform: "uppercase" }}>Which workflow costs your team <em style={{ color: "var(--signal)", fontStyle: "normal" }}>unnecessary time</em> every day?</h2>
+        <h2 className="cl-final-h2" style={{ maxWidth: 1020, margin: 0, fontSize: "clamp(54px, 7.5vw, 106px)", fontWeight: 800, lineHeight: 0.89, textTransform: "uppercase" }}>Which workflow costs your team <em style={{ color: "var(--signal)", fontStyle: "normal" }}>unnecessary time</em> every day?</h2>
         <p style={{ maxWidth: 570, margin: "26px 0 30px", color: "rgb(255 255 255 / 74%)", fontSize: 16, lineHeight: 1.55 }}>We look at the specific bottleneck, review the data and systems involved and show what a working workflow could look like.</p>
         <Button variant="primary" arrow href="mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
       </div>
@@ -64,7 +64,7 @@ function Footer() {
   return (
     <footer style={{ padding: "70px 0 30px", color: "#89918c", background: "#050605", borderTop: "1px solid #303531" }}>
       <div style={shell}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 40, paddingBottom: 44, borderBottom: "1px solid #26302a" }}>
+        <div className="cl-footer-grid" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1fr", gap: 40, paddingBottom: 44, borderBottom: "1px solid #26302a" }}>
           <div>
             {mark}
             <p style={{ margin: "20px 0 0", color: "#aeb6af", fontSize: 14, lineHeight: 1.55, maxWidth: 300 }}>Intelligent workflows that bring order to the daily data chaos.</p>
@@ -86,7 +86,7 @@ function Footer() {
             <button type="button" data-privacy-settings="" style={{ ...col, border: 0, background: "transparent", cursor: "pointer", textAlign: "left" }}>Privacy settings</button>
           </div>
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 30, paddingTop: 26, fontSize: 10, fontWeight: 650 }}>
+        <div className="cl-footer-bottom" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 30, paddingTop: 26, fontSize: 10, fontWeight: 650 }}>
           <span>© 2026 eazy.cloud · Intelligent workflows for business</span>
           <span style={{ display: "inline-flex", border: "1px solid #3a443d" }}>
             <span style={{ padding: "7px 9px", fontSize: 9, fontWeight: 800, background: "var(--signal)", color: "var(--ink)" }}>EN</span>

@@ -1,0 +1,83 @@
+/* eazy.cloud — responsive layer.
+   The site is built with React inline styles (which win over stylesheet rules),
+   so mobile overrides below are marked !important on purpose. Layout collapses
+   to a single column and the top navigation folds into a hamburger at <=860px. */
+
+/* ---- Hamburger icon (always styled; only shown on mobile) ---- */
+.cl-burger-box { position: relative; display: block; width: 22px; height: 16px; }
+.cl-burger-box i { position: absolute; left: 0; width: 100%; height: 2px; background: #fff;
+  transition: transform .25s ease, opacity .2s ease, top .25s ease; }
+.cl-burger-box i:nth-child(1) { top: 0; }
+.cl-burger-box i:nth-child(2) { top: 7px; }
+.cl-burger-box i:nth-child(3) { top: 14px; }
+.cl-burger-box.is-open i:nth-child(1) { top: 7px; transform: rotate(45deg); }
+.cl-burger-box.is-open i:nth-child(2) { opacity: 0; }
+.cl-burger-box.is-open i:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+
+@media (max-width: 860px) {
+  /* ---- Top bar: desktop nav/actions out, hamburger in ---- */
+  .cl-desktop-nav, .cl-desktop-actions { display: none !important; }
+  .cl-burger { display: inline-flex !important; align-items: center; justify-content: center; }
+
+  .cl-mobile-menu {
+    display: block !important;
+    position: fixed; inset: 76px 0 0 0;
+    overflow-y: auto;
+    background: #070807;
+    padding: 28px clamp(20px, 6vw, 36px) 40px;
+    transform: translateY(-8px); opacity: 0; pointer-events: none;
+    transition: opacity .22s ease, transform .22s ease; z-index: 40;
+  }
+  .cl-mobile-menu.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+
+  /* ---- Hero ---- */
+  .cl-hero { height: auto !important; min-height: 0 !important; max-height: none !important;
+    padding: 116px 0 64px !important; }
+  .cl-docstream { display: none !important; }
+  .cl-hero-content { position: static !important; width: 100% !important; transform: none !important; }
+  .cl-hero-h1 { font-size: clamp(40px, 12vw, 66px) !important; }
+  .cl-hero-cta { flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
+  .cl-hero-note { display: none !important; }
+
+  /* ---- Intro: "From chaos to clarity" ---- */
+  .cl-intro-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .cl-intro-row { grid-template-columns: auto 1fr !important; gap: 6px 18px !important;
+    padding: 24px 0 24px 22px !important; }
+  .cl-intro-row > p { grid-column: 1 / -1 !important; margin-top: 6px !important; }
+
+  /* ---- Stages (image banner on top, text below) ---- */
+  .cl-stage { grid-template-columns: 1fr !important; min-height: 0 !important; }
+  .cl-stage-media { order: 1; min-height: 220px; }
+  .cl-stage-text { order: 2; padding: 88px clamp(20px, 6vw, 32px) 56px !important; }
+
+  /* ---- Case detail (Nordwerk before/after) ---- */
+  .cl-detailhead { grid-template-columns: 1fr !important; gap: 16px !important; margin-bottom: 36px !important; }
+  .cl-case-grid { grid-template-columns: 1fr !important; }
+  .cl-case-mid { display: none !important; }
+
+  /* ---- Knowledge collage: drop floating docs, answer becomes a static card ---- */
+  .cl-know-stage { height: auto !important; border: none !important; margin-top: 22px !important; }
+  .cl-know-doc { display: none !important; }
+  .cl-know-answer { position: static !important; width: 100% !important; transform: none !important; }
+
+  /* ---- Systems flow: vertical chain ---- */
+  .cl-flow { grid-template-columns: 1fr !important; }
+  .cl-flow-arrow { transform: rotate(90deg); padding: 6px 0; }
+
+  /* ---- Trust matrix ---- */
+  .cl-trust-grid { grid-template-columns: 1fr !important; }
+  .cl-trust-grid > div { border-left: none !important; border-top: 1px solid var(--line); }
+  .cl-trust-grid > div:first-child { border-top: none !important; }
+
+  /* ---- Final CTA ---- */
+  .cl-final-h2 { font-size: clamp(38px, 11vw, 60px) !important; }
+
+  /* ---- Footer ---- */
+  .cl-footer-grid { grid-template-columns: 1fr 1fr !important; gap: 30px !important; }
+  .cl-footer-grid > div:first-child { grid-column: 1 / -1 !important; }
+  .cl-footer-bottom { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
+}
+
+@media (max-width: 520px) {
+  .cl-footer-grid { grid-template-columns: 1fr !important; }
+}

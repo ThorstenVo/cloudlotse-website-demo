@@ -13,14 +13,14 @@ function Stage({ id, no, small, title, copy, src, imageOpacity = 1, seamlessEdge
     ? "linear-gradient(90deg, var(--ink) 0%, rgb(22 31 38 / 96%) 8%, rgb(42 62 74 / 68%) 22%, rgb(84 112 124 / 28%) 38%, transparent 54%)"
     : "linear-gradient(90deg, var(--ink) 0%, rgb(16 20 17 / 96%) 7%, rgb(16 20 17 / 72%) 20%, rgb(16 20 17 / 28%) 36%, transparent 52%)";
   return (
-    <section id={id} data-chapter={no} style={{ display: "grid", gridTemplateColumns: "minmax(0, .82fr) minmax(0, 1.18fr)", minHeight: 620, color: "#fff", background: "var(--ink)" }}>
-      <div style={{ background: "var(--ink)", padding: "56px 52px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <section id={id} data-chapter={no} className="cl-stage" style={{ display: "grid", gridTemplateColumns: "minmax(0, .82fr) minmax(0, 1.18fr)", minHeight: 620, color: "#fff", background: "var(--ink)" }}>
+      <div className="cl-stage-text" style={{ background: "var(--ink)", padding: "56px 52px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
         <span style={{ fontSize: "clamp(80px, 9vw, 140px)", fontWeight: 800, color: "var(--signal)", lineHeight: 0.8 }}>{no}</span>
         <small style={{ marginTop: 16, color: "var(--signal)", fontSize: 10, fontWeight: 800, lineHeight: 1, textTransform: "uppercase" }}>{small}</small>
         <h2 style={{ margin: "14px 0 0", color: "#fff", fontSize: "clamp(44px, 4.6vw, 72px)", fontWeight: 800, lineHeight: 0.9, textTransform: "uppercase" }}>{title}</h2>
         <p style={{ maxWidth: 440, margin: "22px 0 0", color: "rgb(255 255 255 / 74%)", fontSize: 15, lineHeight: 1.55 }}>{copy}</p>
       </div>
-      <div style={{ position: "relative", overflow: "hidden", background: "var(--ink)" }}>
+      <div className="cl-stage-media" style={{ position: "relative", overflow: "hidden", background: "var(--ink)" }}>
         <img src={src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: imageOpacity, filter: "saturate(.82) contrast(1.03)" }} />
         <span aria-hidden="true" style={{ position: "absolute", inset: 0, background: seamlessEdge
           ? edgeGradient
@@ -32,7 +32,7 @@ function Stage({ id, no, small, title, copy, src, imageOpacity = 1, seamlessEdge
 
 function DetailHead({ label, children }) {
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "minmax(180px, .42fr) minmax(0, 1.58fr)", gap: 60, marginBottom: 52 }}>
+    <div className="cl-detailhead" style={{ display: "grid", gridTemplateColumns: "minmax(180px, .42fr) minmax(0, 1.58fr)", gap: 60, marginBottom: 52 }}>
       <Label>{label}</Label>
       <h3 style={{ maxWidth: 980, margin: 0, color: "var(--ink)", fontSize: "clamp(38px, 5.2vw, 72px)", fontWeight: 800, lineHeight: 0.98 }}>{children}</h3>
     </div>
@@ -48,14 +48,14 @@ function CaseDetail() {
     <section style={{ padding: "104px 0 118px", background: "var(--paper)" }}>
       <div style={shell}>
         <DetailHead label="Example / Nordwerk">From 130 minutes of manual work to a <em style={em}>25-minute review.</em></DetailHead>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 88px 1fr", borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)" }}>
+        <div className="cl-case-grid" style={{ display: "grid", gridTemplateColumns: "1fr 88px 1fr", borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)" }}>
           <div style={{ padding: "40px 36px" }}>
             <span style={{ fontSize: 8, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", color: "var(--muted)" }}>Before · by hand</span>
             <div style={{ fontSize: "clamp(64px, 9vw, 128px)", fontWeight: 800, lineHeight: 0.82, color: "#b8c0ba", marginTop: 10 }}>130<span style={{ fontSize: 20 }}> min</span></div>
             <div style={{ height: 12, background: "#e0e4df", marginTop: 22, overflow: "hidden" }}><i style={{ display: "block", height: "100%", width: "100%", background: "#b8c0ba" }} /></div>
             <p style={{ margin: "14px 0 0", fontSize: 13, lineHeight: 1.5, color: "#59625c", maxWidth: 300 }}>Search sources, transfer figures and assemble the proposal foundation manually.</p>
           </div>
-          <div style={{ display: "grid", placeItems: "center", borderLeft: "1px solid var(--line)", borderRight: "1px solid var(--line)", background: "#fff" }}>
+          <div className="cl-case-mid" style={{ display: "grid", placeItems: "center", borderLeft: "1px solid var(--line)", borderRight: "1px solid var(--line)", background: "#fff" }}>
             <span style={{ fontSize: 9, fontWeight: 800, color: "var(--signal)", textTransform: "uppercase", writingMode: "vertical-rl", transform: "rotate(180deg)", letterSpacing: ".1em" }}>With flow</span>
           </div>
           <div style={{ padding: "40px 36px", background: "#fff" }}>
@@ -93,18 +93,18 @@ function KnowledgeDetail() {
           <span>What needs to be included in the proposal, and which points are still open?</span>
         </div>
         <h3 style={{ maxWidth: 760, margin: "14px 0 0", fontSize: "clamp(34px, 3.6vw, 52px)", fontWeight: 800, lineHeight: 1 }}>An <em style={em}>evidence-based answer</em> — built only from the project's own sources.</h3>
-        <div style={{ position: "relative", height: 560, marginTop: 34, border: "1px solid #26302a" }}>
+        <div className="cl-know-stage" style={{ position: "relative", height: 560, marginTop: 34, border: "1px solid #26302a" }}>
           {[
             { src: "../../assets/datasheet.png", n: 1, s: { top: 44, left: "5%", transform: "rotate(-8deg)" } },
             { src: "../../assets/tender.png", n: 2, s: { top: 230, left: "16%", transform: "rotate(5deg)" } },
             { src: "../../assets/visit-note.png", n: 3, s: { top: 74, left: "31%", transform: "rotate(9deg)" } },
           ].map((d) => (
-            <div key={d.n} style={{ position: "absolute", width: 158, boxShadow: "0 18px 46px rgb(0 0 0 / 55%)", ...d.s }}>
+            <div key={d.n} className="cl-know-doc" style={{ position: "absolute", width: 158, boxShadow: "0 18px 46px rgb(0 0 0 / 55%)", ...d.s }}>
               <span style={{ position: "absolute", top: -12, left: -12, width: 28, height: 28, background: "var(--signal)", color: "var(--ink)", borderRadius: "50%", display: "grid", placeItems: "center", fontWeight: 800, fontSize: 12, zIndex: 2 }}>{d.n}</span>
               <img src={d.src} alt="" style={{ width: "100%", display: "block" }} />
             </div>
           ))}
-          <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", width: "46%", background: "var(--ink)", borderTop: "4px solid var(--signal)", padding: 32 }}>
+          <div className="cl-know-answer" style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", width: "46%", background: "var(--ink)", borderTop: "4px solid var(--signal)", padding: 32 }}>
             <span style={{ color: "var(--signal)", fontSize: 8, fontWeight: 800, textTransform: "uppercase" }}>Answer from the Aventa opportunity</span>
             <p style={{ fontSize: 21, lineHeight: 1.42, margin: "14px 0 0", fontWeight: 600 }}>The proposal should include onboarding for 35 users, migration of the existing document archive and two training sessions. The final licence count and preferred launch date still need confirmation.</p>
             <span style={{ display: "block", marginTop: 16, color: "#aab2ad", fontSize: 9, fontWeight: 650 }}>Sources: Discovery call ¹ · Requirements email ² · Meeting notes ³</span>
@@ -125,7 +125,7 @@ function SystemsDetail() {
           <span style={{ color: "var(--signal)", fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".04em" }}>Example / Customer service</span>
           <h3 style={{ maxWidth: 820, margin: "14px 0 0", fontSize: "clamp(34px, 3.8vw, 58px)", fontWeight: 800, lineHeight: 0.98 }}>Every handoff carries <em style={em}>everything the next step needs.</em></h3>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 1fr 40px 1fr 40px 1fr", alignItems: "stretch" }}>
+        <div className="cl-flow" style={{ display: "grid", gridTemplateColumns: "1fr 40px 1fr 40px 1fr 40px 1fr", alignItems: "stretch" }}>
           {[
             { no: "01 / Input", h: "Customer enquiry", pl: ["Request details", "Attachments"] },
             { no: "02 / Context", h: "Customer & project knowledge", pl: ["Linked project", "History"] },
@@ -133,7 +133,7 @@ function SystemsDetail() {
             { no: "04 / Next", h: "Next task", pl: ["Owner", "Everything attached"] },
           ].map((s, i) => (
             <React.Fragment key={s.no}>
-              {i > 0 && <div style={{ display: "grid", placeItems: "center", color: "var(--signal)", fontSize: 20, fontWeight: 800 }}>→</div>}
+              {i > 0 && <div className="cl-flow-arrow" style={{ display: "grid", placeItems: "center", color: "var(--signal)", fontSize: 20, fontWeight: 800 }}>→</div>}
               <div style={{ border: "1px solid #26302a", background: "#0c100b", padding: "22px 20px", display: "flex", flexDirection: "column" }}>
                 <span style={{ color: "var(--signal)", fontSize: 9, fontWeight: 800, textTransform: "uppercase", marginBottom: 10 }}>{s.no}</span>
                 <h4 style={{ fontSize: 16, fontWeight: 800, lineHeight: 1.1, margin: "0 0 16px" }}>{s.h}</h4>
