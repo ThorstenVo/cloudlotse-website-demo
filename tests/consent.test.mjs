@@ -68,6 +68,7 @@ test("accept and reject controls persist the choice and close the dialog", () =>
   rejectWindow.document.querySelector('[data-consent-action="reject"]').click();
   assert.equal(rejectWindow.CloudLotsePrivacy.getConsent().analytics, false);
   assert.equal(rejectWindow.document.querySelector("#privacy-consent-dialog"), null);
+  assert.equal(rejectWindow.document.querySelector(".privacy-dialog-backdrop"), null);
 });
 
 test("privacy settings API reopens the settings interface", () => {
