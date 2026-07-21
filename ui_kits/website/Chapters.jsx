@@ -8,7 +8,7 @@ const CH = [
   { id: "workflows", no: "03", title: "Connect workflows" },
 ];
 
-function Stage({ id, no, small, title, copy, src, imageOpacity = 1, seamlessEdge = false, edgeTone = "ink" }) {
+function Stage({ id, no, small, title, copy, src, alt = "", imageOpacity = 1, seamlessEdge = false, edgeTone = "ink" }) {
   const edgeGradient = edgeTone === "cool"
     ? "linear-gradient(90deg, var(--ink) 0%, rgb(22 31 38 / 96%) 8%, rgb(42 62 74 / 68%) 22%, rgb(84 112 124 / 28%) 38%, transparent 54%)"
     : "linear-gradient(90deg, var(--ink) 0%, rgb(16 20 17 / 96%) 7%, rgb(16 20 17 / 72%) 20%, rgb(16 20 17 / 28%) 36%, transparent 52%)";
@@ -21,7 +21,7 @@ function Stage({ id, no, small, title, copy, src, imageOpacity = 1, seamlessEdge
         <p style={{ maxWidth: 440, margin: "22px 0 0", color: "rgb(255 255 255 / 74%)", fontSize: 15, lineHeight: 1.55 }}>{copy}</p>
       </div>
       <div className="cl-stage-media" style={{ position: "relative", overflow: "hidden", background: "var(--ink)" }}>
-        <img src={src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: imageOpacity, filter: "saturate(.82) contrast(1.03)" }} />
+        <img src={src} alt={alt} loading="lazy" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: imageOpacity, filter: "saturate(.82) contrast(1.03)" }} />
         <span aria-hidden="true" style={{ position: "absolute", inset: 0, background: seamlessEdge
           ? edgeGradient
           : "linear-gradient(90deg, rgb(16 20 17 / 55%), transparent 42%)" }} />
@@ -101,7 +101,7 @@ function KnowledgeDetail() {
           ].map((d) => (
             <div key={d.n} className="cl-know-doc" style={{ position: "absolute", width: 158, boxShadow: "0 18px 46px rgb(0 0 0 / 55%)", ...d.s }}>
               <span style={{ position: "absolute", top: -12, left: -12, width: 28, height: 28, background: "var(--signal)", color: "var(--ink)", borderRadius: "50%", display: "grid", placeItems: "center", fontWeight: 800, fontSize: 12, zIndex: 2 }}>{d.n}</span>
-              <img src={d.src} alt="" style={{ width: "100%", display: "block" }} />
+              <img src={d.src} alt="" loading="lazy" decoding="async" style={{ width: "100%", display: "block" }} />
             </div>
           ))}
           <div className="cl-know-answer" style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", width: "46%", background: "var(--ink)", borderTop: "4px solid var(--signal)", padding: 32 }}>
@@ -165,11 +165,11 @@ function Chapters({ active, setActive }) {
       <div style={{ position: "sticky", zIndex: 25, top: 0 }}>
         <ChapterNav chapters={CH} active={active} onSelect={(id) => { setActive(id); const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop, behavior: "smooth" }); }} />
       </div>
-      <Stage id="tasks" no="01" small="Hand over recurring preparation" title="Take over tasks" copy="The workflow recognises, organises and prepares. Your team reviews, decides and moves the work forward." src="../../assets/tasks-digital-workflow.jpg" imageOpacity={0.6} seamlessEdge />
+      <Stage id="tasks" no="01" small="Hand over recurring preparation" title="Take over tasks" copy="The workflow recognises, organises and prepares. Your team reviews, decides and moves the work forward." src="../../assets/tasks-digital-workflow.jpg" alt="Automated digital workflow preparing tasks" imageOpacity={0.6} seamlessEdge />
       <CaseDetail />
-      <Stage id="knowledge" no="02" small="Answers from the right context" title="Make knowledge available" copy="Links, PDFs, photos and notes become useful exactly where the team needs a reliable answer." src="../../assets/knowledge-digital-brain.jpg" imageOpacity={0.85} seamlessEdge />
+      <Stage id="knowledge" no="02" small="Answers from the right context" title="Make knowledge available" copy="Links, PDFs, photos and notes become useful exactly where the team needs a reliable answer." src="../../assets/knowledge-digital-brain.jpg" alt="Connected project knowledge base" imageOpacity={0.85} seamlessEdge />
       <KnowledgeDetail />
-      <Stage id="workflows" no="03" small="Handoffs without duplicate work" title="Connect workflows" copy="Information moves completely between the systems involved — and stays with the right customer or project, available to the whole team." src="../../assets/workflows-growth-dashboard.jpg" imageOpacity={1} seamlessEdge edgeTone="cool" />
+      <Stage id="workflows" no="03" small="Handoffs without duplicate work" title="Connect workflows" copy="Information moves completely between the systems involved — and stays with the right customer or project, available to the whole team." src="../../assets/workflows-growth-dashboard.jpg" alt="Workflow performance growth dashboard" imageOpacity={1} seamlessEdge edgeTone="cool" />
       <SystemsDetail />
     </>
   );

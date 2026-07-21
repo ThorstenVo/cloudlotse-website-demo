@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /wire/
+Disallow: /site/
+Disallow: /usage/
+
+Sitemap: https://eazy.cloud/sitemap.xml

@@ -3,7 +3,7 @@ import { access, readFile } from "node:fs/promises";
 
 const htmlPath = new URL("../ui_kits/website/index.html", import.meta.url);
 const html = await readFile(htmlPath, "utf8");
-const required = ["vendor", "Chrome", "Hero", "Chapters", "Closing", "tweaks-panel", "app"];
+const required = ["vendor", "Chrome", "Hero", "Chapters", "Closing", "app"];
 
 assert.doesNotMatch(html, /<(?:script|link)[^>]+(?:src|href)=["']https?:\/\//i);
 for (const name of required) {

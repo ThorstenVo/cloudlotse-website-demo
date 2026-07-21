@@ -5,7 +5,7 @@ import path from "node:path";
 const root = process.cwd();
 const sourceDir = path.join(root, "ui_kits", "website");
 const outDir = path.join(sourceDir, "dist");
-const jsxSources = ["Chrome.jsx", "Hero.jsx", "Chapters.jsx", "Closing.jsx", "tweaks-panel.jsx", "app.jsx"];
+const jsxSources = ["Chrome.jsx", "Hero.jsx", "Chapters.jsx", "Closing.jsx", "app.jsx"];
 
 await mkdir(outDir, { recursive: true });
 await build({
