@@ -32,12 +32,14 @@
 
   /* ---- Hero ---- */
   .cl-hero { height: auto !important; min-height: 0 !important; max-height: none !important;
-    padding: 116px 0 300px !important; }
-  /* Keep the floating-document animation on mobile, moved below the copy as an
-     accent (it would collide with the full-width headline otherwise). */
+    padding: 116px 0 64px !important; }
+  /* Keep the floating-document animation on mobile as a faint backdrop behind
+     the hero copy (right/upper), immediately visible; the dark gradients keep
+     the white headline legible. */
   .cl-docstream { display: block !important;
-    top: auto !important; bottom: 12px !important; right: 50% !important;
-    transform: translateX(50%) scale(0.62) !important; transform-origin: bottom center; }
+    top: 190px !important; right: -70px !important; bottom: auto !important;
+    transform: scale(0.72) !important; transform-origin: top right;
+    opacity: 0.5 !important; }
   .cl-hero-content { position: static !important; width: 100% !important; transform: none !important; }
   .cl-hero-h1 { font-size: clamp(40px, 12vw, 66px) !important; }
   .cl-hero-cta { flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
