@@ -169,7 +169,7 @@ function Chapters({ active, setActive }) {
       <CaseDetail />
       <Stage id="knowledge" no="02" small="Answers from the right context" title="Make knowledge available" copy="Links, PDFs, photos and notes become useful exactly where the team needs a reliable answer." src="../../assets/knowledge-digital-brain.jpg" imageOpacity={0.85} seamlessEdge />
       <KnowledgeDetail />
-      <Stage id="workflows" no="03" small="Handoffs without duplicate work" title="Connect workflows" copy="Information moves completely between the systems involved — and stays with the right customer or project, available to the whole team." src="../../assets/workflows-growth-dashboard.jpg" imageOpacity={0.85} seamlessEdge edgeTone="cool" />
+      <Stage id="workflows" no="03" small="Handoffs without duplicate work" title="Connect workflows" copy="Information moves completely between the systems involved — and stays with the right customer or project, available to the whole team." src="../../assets/workflows-growth-dashboard.jpg" imageOpacity={1} seamlessEdge edgeTone="cool" />
       <SystemsDetail />
     </>
   );
