@@ -85,7 +85,9 @@ function Footer() {
           </div>
           <div>
             <div style={head}>Legal</div>
-            {["Legal notice", "Privacy", "EU data processing"].map((l) => <a key={l} href="#" style={col}>{l}</a>)}
+            <a href="../../legal/" style={col}>Legal notice</a>
+            <a href="#" style={col}>Privacy</a>
+            <a href="#" style={col}>EU data processing</a>
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 30, paddingTop: 26, fontSize: 10, fontWeight: 650 }}>
