@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/build.mjs",
+    "build": "node scripts/build.mjs && node scripts/prerender.mjs",
     "check:site": "node scripts/check-built-site.mjs",
     "test": "node --test tests/*.test.mjs && npm run build && npm run check:site"
   },

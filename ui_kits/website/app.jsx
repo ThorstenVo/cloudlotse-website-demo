@@ -30,7 +30,10 @@ function Site() {
 
 function mount() {
   if (!window.Footer || !window.Chapters || !window.Hero || !window.TopBar) return setTimeout(mount, 40);
-  ReactDOM.createRoot(document.getElementById("root")).render(<Site />);
+  const el = document.getElementById("root");
+  // Prerendered markup present → hydrate; empty container → client render.
+  if (el.firstElementChild) ReactDOM.hydrateRoot(el, <Site />);
+  else ReactDOM.createRoot(el).render(<Site />);
 }
 
 mount();
