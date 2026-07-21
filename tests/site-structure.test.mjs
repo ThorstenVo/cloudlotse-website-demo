@@ -17,7 +17,7 @@ test("privacy page contains the approved layered disclosures", async () => {
     "Consent management", "Google Tag Manager and Google Analytics 4",
     "Cookies and similar technologies", "Your GDPR rights", "Policy updates",
   ]) assert.match(html, new RegExp(heading, "i"));
-  assert.match(html, /cloudlotse OÜ/);
+  assert.match(html, /eazy\.cloud/);
   assert.match(html, /Sepapaja tn 6/);
   assert.match(html, /voigt@eazy\.cloud/);
   assert.match(html, /seven days/i);

@@ -1,4 +1,4 @@
-/* CloudLotse website — chapter nav + 4 stage sections + their detail blocks. */
+/* eazy.cloud website — chapter nav + 4 stage sections + their detail blocks. */
 (() => {
 const { ChapterNav, Label, ProofStep, TimeBar, SystemFlow } = window.CloudLotseDesignSystem_b0c356;
 
@@ -59,7 +59,7 @@ function CaseDetail() {
             <span style={{ fontSize: 9, fontWeight: 800, color: "var(--signal)", textTransform: "uppercase", writingMode: "vertical-rl", transform: "rotate(180deg)", letterSpacing: ".1em" }}>With flow</span>
           </div>
           <div style={{ padding: "40px 36px", background: "#fff" }}>
-            <span style={{ fontSize: 8, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", color: "var(--muted)" }}>With CloudLotse</span>
+            <span style={{ fontSize: 8, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", color: "var(--muted)" }}>With eazy.cloud</span>
             <div style={{ fontSize: "clamp(64px, 9vw, 128px)", fontWeight: 800, lineHeight: 0.82, color: "var(--signal)", marginTop: 10 }}>25<span style={{ fontSize: 20 }}> min</span></div>
             <div style={{ height: 12, background: "#e0e4df", marginTop: 22, overflow: "hidden" }}><i style={{ display: "block", height: "100%", width: "19%", background: "var(--success)" }} /></div>
             <p style={{ margin: "14px 0 0", fontSize: 13, lineHeight: 1.5, color: "#59625c", maxWidth: 300 }}>The workflow prepares the foundation. Your team reviews and decides.</p>

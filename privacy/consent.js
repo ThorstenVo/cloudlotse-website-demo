@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const STORAGE_KEY = "cloudlotse_privacy_consent_v1";
+  const STORAGE_KEY = "eazycloud_privacy_consent_v1";
   const CONSENT_VERSION = 1;
   let settingsOpener = null;
 
@@ -20,14 +20,14 @@
   }
 
   function loadGtm() {
-    const id = window.CloudLotseAnalyticsConfig?.gtmContainerId;
+    const id = window.EazyCloudAnalyticsConfig?.gtmContainerId;
     if (!/^GTM-[A-Z0-9]+$/.test(id || "")) return;
-    if (document.querySelector(`script[data-cloudlotse-gtm="${id}"]`)) return;
+    if (document.querySelector(`script[data-eazycloud-gtm="${id}"]`)) return;
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
     const script = document.createElement("script");
     script.async = true;
-    script.dataset.cloudlotseGtm = id;
+    script.dataset.eazycloudGtm = id;
     script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(id)}`;
     document.head.append(script);
   }
@@ -146,7 +146,7 @@
     if (!consent) renderFirstLayer();
   }
 
-  window.CloudLotsePrivacy = Object.freeze({ getConsent, setAnalyticsConsent, openSettings, withdrawConsent });
+  window.EazyCloudPrivacy = Object.freeze({ getConsent, setAnalyticsConsent, openSettings, withdrawConsent });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();

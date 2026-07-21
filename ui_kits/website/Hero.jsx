@@ -1,4 +1,4 @@
-/* CloudLotse website — hero + intro sections. */
+/* eazy.cloud website — hero + intro sections. */
 (() => {
 const { Kicker, Label, Button } = window.CloudLotseDesignSystem_b0c356;
 
@@ -47,8 +47,8 @@ function Hero() {
             <span style={{ display: "block" }}>Clear paths.</span>
           </h1>
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 30, marginTop: 34, paddingTop: 20, borderTop: "1px solid rgb(255 255 255 / 35%)" }}>
-            <p style={{ flex: "1 1 auto", maxWidth: 560, margin: 0, color: "rgb(255 255 255 / 80%)", fontSize: 16, lineHeight: 1.5 }}>Scattered information becomes an ordered flow — CloudLotse brings order to the daily data chaos.</p>
-            <Button variant="primary" arrow href="mailto:thorsten.voigt@cloudlotse.de?subject=CloudLotse%20workflow%20review">Review a workflow</Button>
+            <p style={{ flex: "1 1 auto", maxWidth: 560, margin: 0, color: "rgb(255 255 255 / 80%)", fontSize: 16, lineHeight: 1.5 }}>Scattered information becomes an ordered flow — eazy.cloud brings order to the daily data chaos.</p>
+            <Button variant="primary" arrow href="mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
           </div>
         </div>
         <div style={{ position: "absolute", zIndex: 4, right: 0, bottom: 28, maxWidth: 320, color: "rgb(255 255 255 / 62%)", fontSize: 9, fontWeight: 750, lineHeight: 1.45, textAlign: "right", textTransform: "uppercase" }}>

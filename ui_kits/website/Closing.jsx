@@ -1,4 +1,4 @@
-/* CloudLotse website — gallery, trust, final CTA, footer. */
+/* eazy.cloud website — gallery, trust, final CTA, footer. */
 (() => {
 const { Label, GalleryCase, TrustRow, Button } = window.CloudLotseDesignSystem_b0c356;
 
@@ -50,7 +50,7 @@ function Final() {
         <span style={{ display: "block", marginBottom: 24, color: "var(--signal)", fontSize: 10, fontWeight: 800, textTransform: "uppercase" }}>A useful first step</span>
         <h2 style={{ maxWidth: 1020, margin: 0, fontSize: "clamp(54px, 7.5vw, 106px)", fontWeight: 800, lineHeight: 0.89, textTransform: "uppercase" }}>Which workflow costs your team <em style={{ color: "var(--signal)", fontStyle: "normal" }}>unnecessary time</em> every day?</h2>
         <p style={{ maxWidth: 570, margin: "26px 0 30px", color: "rgb(255 255 255 / 74%)", fontSize: 16, lineHeight: 1.55 }}>We look at the specific bottleneck, review the data and systems involved and show what a working workflow could look like.</p>
-        <Button variant="primary" arrow href="mailto:thorsten.voigt@cloudlotse.de?subject=CloudLotse%20workflow%20review">Review a workflow</Button>
+        <Button variant="primary" arrow href="mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
       </div>
     </section>
   );
@@ -58,12 +58,7 @@ function Final() {
 
 function Footer() {
   const shell = window.shellStyle;
-  const mark = (
-    <span style={{ display: "inline-flex", alignItems: "center", gap: 9, color: "#fff", fontSize: 20, fontWeight: 800 }}>
-      <svg width="26" height="26" viewBox="0 0 100 100" style={{ flex: "0 0 auto" }}><rect x="13" y="13" width="74" height="74" rx="24" fill="none" stroke="#3fbf7a" strokeWidth="5" /><path d="M33 36 L48 50 L33 64" fill="none" stroke="#b6ed6f" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" /><path d="M49 36 L64 50 L49 64" fill="none" stroke="#5fd08f" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-      CloudLotse
-    </span>
-  );
+  const mark = <img src="../../assets/eazycloud_logo_white.svg" alt="eazy.cloud" style={{ width: 152, height: "auto" }} />;
   const col = { display: "block", fontSize: 13, fontWeight: 650, padding: "6px 0", color: "#aeb6af", textDecoration: "none" };
   const head = { color: "#fff", fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 16 };
   return (
@@ -80,8 +75,8 @@ function Footer() {
           </div>
           <div>
             <div style={head}>Contact</div>
-            <a href="mailto:thorsten.voigt@cloudlotse.de" style={col}>thorsten.voigt@cloudlotse.de</a>
-            <a href="mailto:thorsten.voigt@cloudlotse.de?subject=CloudLotse%20workflow%20review" style={col}>Review a workflow</a>
+            <a href="mailto:support@eazy.cloud" style={col}>support@eazy.cloud</a>
+            <a href="mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review" style={col}>Review a workflow</a>
           </div>
           <div>
             <div style={head}>Legal</div>
@@ -92,7 +87,7 @@ function Footer() {
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 30, paddingTop: 26, fontSize: 10, fontWeight: 650 }}>
-          <span>© 2026 CloudLotse · Intelligent workflows for business</span>
+          <span>© 2026 eazy.cloud · Intelligent workflows for business</span>
           <span style={{ display: "inline-flex", border: "1px solid #3a443d" }}>
             <span style={{ padding: "7px 9px", fontSize: 9, fontWeight: 800, background: "var(--signal)", color: "var(--ink)" }}>EN</span>
             <a href="#" style={{ padding: "7px 9px", fontSize: 9, fontWeight: 800, color: "#aeb6af", textDecoration: "none" }}>DE</a>

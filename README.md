@@ -1,4 +1,4 @@
-# Handoff: CloudLotse Marketing Website
+# Handoff: eazy.cloud Marketing Website
 
 ## Preview
 
@@ -19,7 +19,7 @@ contains `gtmContainerId: null`.
 
 Before enabling analytics:
 
-1. Replace `null` with the verified CloudLotse `GTM-...` container ID.
+1. Replace `null` with the verified eazy.cloud `GTM-...` container ID.
 2. Publish only one GA4 Google tag in that container; do not add advertising
    or unapproved third-party tags.
 3. Set GA4 user and event data retention to two months.
@@ -36,7 +36,7 @@ suffixes from the original handoff archive were removed so GitHub Pages can
 load the React-via-Babel source files directly.
 
 ## Overview
-Single-page, long-scroll marketing site for **CloudLotse** — "intelligent workflows that bring order to the daily data chaos." Order: hero → 3-step value prop → chapter nav + 3 service chapters (each a split "stage" + a proof/detail block) → data-sovereignty trust section → final CTA → footer. English copy; DE/EN toggle is visual only (wire to i18n).
+Single-page, long-scroll marketing site for **eazy.cloud** — "intelligent workflows that bring order to the daily data chaos." Order: hero → 3-step value prop → chapter nav + 3 service chapters (each a split "stage" + a proof/detail block) → data-sovereignty trust section → final CTA → footer. English copy; DE/EN toggle is visual only (wire to i18n).
 
 ## About the design files
 These are **design references** (an HTML + React-via-Babel prototype), not production code. Recreate them in the target codebase's environment (React/Next, Astro, Vue…) using its patterns and build. Styling uses inline styles referencing CSS custom properties in `styles.css`/`tokens/` — map them to your styling system. `_ds_bundle.js` is a **generated** bundle of the primitives; rebuild those as your component set, don't ship it.
@@ -45,8 +45,8 @@ These are **design references** (an HTML + React-via-Babel prototype), not produ
 **High-fidelity.** Exact colours, type, spacing and interactions are below and in the files.
 
 ## Screens (scroll order)
-1. **Header (dark, ~76px):** green double-chevron mark + "CloudLotse"; nav Possibilities/Approach/Contact → `#possibilities`/`#approach`/`#contact`; DE/EN toggle (active orange); outline CTA "Review a workflow" → `mailto:thorsten.voigt@cloudlotse.de?subject=CloudLotse%20workflow%20review`.
-2. **Hero "document stream" (dark):** copy left, animated doc stack right — four cards scatter→align on an 8s loop (`cl-docmove`, .4s stagger, top card orange border). Kicker "Intelligence for everyday work"; H1 "Intelligent / workflows. / Clear paths." (`clamp(58px,7.5vw,112px)`,800,uppercase,lh.88); sub-copy "Scattered information becomes an ordered flow — CloudLotse brings order to the daily data chaos." + primary CTA.
+1. **Header (dark, ~76px):** eazy.cloud logo; nav Possibilities/Approach/Contact → `#possibilities`/`#approach`/`#contact`; DE/EN toggle (active orange); outline CTA "Review a workflow" → `mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review`.
+2. **Hero "document stream" (dark):** copy left, animated doc stack right — four cards scatter→align on an 8s loop (`cl-docmove`, .4s stagger, top card orange border). Kicker "Intelligence for everyday work"; H1 "Intelligent / workflows. / Clear paths." (`clamp(58px,7.5vw,112px)`,800,uppercase,lh.88); sub-copy "Scattered information becomes an ordered flow — eazy.cloud brings order to the daily data chaos." + primary CTA.
 3. **"What becomes possible" — process triad (paper):** left Label + H2 "From chaos to clarity."; right 3 rows (number / verb head / description) with an orange marker bar cycling the active row every 1800ms.
 4. **Chapter nav (sticky dark, 3 tabs):** 01 Take over tasks · 02 Make knowledge available · 03 Connect workflows; active tab orange; IntersectionObserver scroll-spy (`rootMargin: -34% 0px -52% 0px`); click smooth-scrolls.
 5. **Stages ×3 (split-panel, min-h 620):** grid `.82fr/1.18fr` — left ink panel (giant orange number, kicker, white uppercase title, sub-copy), right photo (`saturate(.82) contrast(1.03)`, left scrim). Images 01 `tasks-digital-workflow.jpg` · 02 `knowledge-digital-brain.jpg` · 03 `clear-route.jpg`. (03 copy also covers collaboration.)

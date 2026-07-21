@@ -1,3 +1,3 @@
-window.CloudLotseAnalyticsConfig = Object.freeze({
+window.EazyCloudAnalyticsConfig = Object.freeze({
   gtmContainerId: null,
 });
