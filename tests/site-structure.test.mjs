@@ -34,3 +34,11 @@ test("homepage and legal pages expose working privacy navigation", async () => {
   assert.match(legal, /href="\.\.\/privacy\/"/);
   assert.match(legal, /data-privacy-settings/);
 });
+
+test("README documents privacy-sensitive launch configuration", async () => {
+  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
+  assert.match(readme, /Analytics launch checklist/);
+  assert.match(readme, /two months/i);
+  assert.match(readme, /basic consent mode/i);
+  assert.match(readme, /no GTM script, consent ping, or analytics request/i);
+});

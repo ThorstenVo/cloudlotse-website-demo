@@ -44,8 +44,7 @@
   }
 
   function closeDialog() {
-    document.querySelector("#privacy-consent-dialog")?.remove();
-    document.querySelector("#privacy-settings-panel")?.remove();
+    document.querySelectorAll(".privacy-dialog-backdrop").forEach((backdrop) => backdrop.remove());
     document.body.classList.remove("privacy-dialog-open");
     if (settingsOpener?.isConnected) settingsOpener.focus();
     settingsOpener = null;
@@ -96,7 +95,7 @@
 
   function openSettings(opener = document.activeElement) {
     settingsOpener = opener;
-    document.querySelector(".privacy-dialog-backdrop")?.remove();
+    document.querySelectorAll(".privacy-dialog-backdrop").forEach((backdrop) => backdrop.remove());
     const current = getConsent();
     const { dialog } = dialogShell("privacy-settings-panel", "privacy-settings-title", "privacy-settings-description");
     dialog.innerHTML = `

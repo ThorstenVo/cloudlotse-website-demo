@@ -6,6 +6,31 @@ The runnable design draft is published through GitHub Pages at:
 
 `https://thorstenvo.github.io/cloudlotse-website-demo/`
 
+## Local production build
+
+Run `npm install`, `npm test`, and `npm run build`. Serve the repository root
+and open `/ui_kits/website/`. The production HTML loads only local scripts;
+do not restore runtime Babel or CDN dependencies.
+
+## Analytics launch checklist
+
+Analytics is intentionally disabled while `privacy/analytics-config.js`
+contains `gtmContainerId: null`.
+
+Before enabling analytics:
+
+1. Replace `null` with the verified CloudLotse `GTM-...` container ID.
+2. Publish only one GA4 Google tag in that container; do not add advertising
+   or unapproved third-party tags.
+3. Set GA4 user and event data retention to two months.
+4. Use basic consent mode: no GTM script, consent ping, or analytics request
+   may reach Google before acceptance.
+5. Confirm rejection leaves the website fully functional.
+6. Confirm `Privacy settings` reopens the choices and withdrawal reloads the
+   page without Google.
+7. Compare the final GTM/GA4 configuration with the Privacy page and obtain
+   legal review before launch.
+
 This repository is a review prototype, not production code. The inert `.txt`
 suffixes from the original handoff archive were removed so GitHub Pages can
 load the React-via-Babel source files directly.
