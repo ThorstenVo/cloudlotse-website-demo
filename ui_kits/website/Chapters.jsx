@@ -90,7 +90,7 @@ function KnowledgeDetail() {
       <div style={shell}>
         <div style={{ display: "flex", gap: 12, alignItems: "center", color: "rgb(255 255 255 / 72%)", fontSize: 15, fontWeight: 700, marginBottom: 8 }}>
           <b style={{ color: "var(--signal)", fontSize: 8, fontWeight: 800, textTransform: "uppercase" }}>Question</b>
-          <span>Which requirements must we consider when upgrading the control system?</span>
+          <span>What needs to be included in the proposal, and which points are still open?</span>
         </div>
         <h3 style={{ maxWidth: 760, margin: "14px 0 0", fontSize: "clamp(34px, 3.6vw, 52px)", fontWeight: 800, lineHeight: 1 }}>An <em style={em}>evidence-based answer</em> — built only from the project's own sources.</h3>
         <div style={{ position: "relative", height: 560, marginTop: 34, border: "1px solid #26302a" }}>
@@ -105,9 +105,9 @@ function KnowledgeDetail() {
             </div>
           ))}
           <div style={{ position: "absolute", right: "5%", top: "50%", transform: "translateY(-50%)", width: "46%", background: "var(--ink)", borderTop: "4px solid var(--signal)", padding: 32 }}>
-            <span style={{ color: "var(--signal)", fontSize: 8, fontWeight: 800, textTransform: "uppercase" }}>Answer from the Nordwerk project list</span>
-            <p style={{ fontSize: 21, lineHeight: 1.42, margin: "14px 0 0", fontWeight: 600 }}>The existing control system supports PROFINET and 24 V DC. The limited cabinet space must be checked before installation.</p>
-            <span style={{ display: "block", marginTop: 16, color: "#aab2ad", fontSize: 9, fontWeight: 650 }}>Sources: Data sheet X4 ¹ · Site note Jan ² · Tender 24-118 ³</span>
+            <span style={{ color: "var(--signal)", fontSize: 8, fontWeight: 800, textTransform: "uppercase" }}>Answer from the Aventa opportunity</span>
+            <p style={{ fontSize: 21, lineHeight: 1.42, margin: "14px 0 0", fontWeight: 600 }}>The proposal should include onboarding for 35 users, migration of the existing document archive and two training sessions. The final licence count and preferred launch date still need confirmation.</p>
+            <span style={{ display: "block", marginTop: 16, color: "#aab2ad", fontSize: 9, fontWeight: 650 }}>Sources: Discovery call ¹ · Requirements email ² · Meeting notes ³</span>
           </div>
         </div>
       </div>
