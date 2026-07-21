@@ -8,7 +8,7 @@ const CH = [
   { id: "workflows", no: "03", title: "Connect workflows" },
 ];
 
-function Stage({ id, no, small, title, copy, src, imageOpacity = 1 }) {
+function Stage({ id, no, small, title, copy, src, imageOpacity = 1, seamlessEdge = false }) {
   return (
     <section id={id} data-chapter={no} style={{ display: "grid", gridTemplateColumns: "minmax(0, .82fr) minmax(0, 1.18fr)", minHeight: 620, color: "#fff", background: "var(--ink)" }}>
       <div style={{ background: "var(--ink)", padding: "56px 52px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
@@ -19,7 +19,9 @@ function Stage({ id, no, small, title, copy, src, imageOpacity = 1 }) {
       </div>
       <div style={{ position: "relative", overflow: "hidden", background: "var(--ink)" }}>
         <img src={src} alt="" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: imageOpacity, filter: "saturate(.82) contrast(1.03)" }} />
-        <span aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgb(16 20 17 / 55%), transparent 42%)" }} />
+        <span aria-hidden="true" style={{ position: "absolute", inset: 0, background: seamlessEdge
+          ? "linear-gradient(90deg, var(--ink) 0%, rgb(16 20 17 / 96%) 7%, rgb(16 20 17 / 72%) 20%, rgb(16 20 17 / 28%) 36%, transparent 52%)"
+          : "linear-gradient(90deg, rgb(16 20 17 / 55%), transparent 42%)" }} />
       </div>
     </section>
   );
@@ -160,9 +162,9 @@ function Chapters({ active, setActive }) {
       <div style={{ position: "sticky", zIndex: 25, top: 0 }}>
         <ChapterNav chapters={CH} active={active} onSelect={(id) => { setActive(id); const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop, behavior: "smooth" }); }} />
       </div>
-      <Stage id="tasks" no="01" small="Hand over recurring preparation" title="Take over tasks" copy="The workflow recognises, organises and prepares. Your team reviews, decides and moves the work forward." src="../../assets/tasks-digital-workflow.jpg" imageOpacity={0.6} />
+      <Stage id="tasks" no="01" small="Hand over recurring preparation" title="Take over tasks" copy="The workflow recognises, organises and prepares. Your team reviews, decides and moves the work forward." src="../../assets/tasks-digital-workflow.jpg" imageOpacity={0.6} seamlessEdge />
       <CaseDetail />
-      <Stage id="knowledge" no="02" small="Answers from the right context" title="Make knowledge available" copy="Links, PDFs, photos and notes become useful exactly where the team needs a reliable answer." src="../../assets/knowledge-digital-brain.jpg" imageOpacity={0.6} />
+      <Stage id="knowledge" no="02" small="Answers from the right context" title="Make knowledge available" copy="Links, PDFs, photos and notes become useful exactly where the team needs a reliable answer." src="../../assets/knowledge-digital-brain.jpg" imageOpacity={0.6} seamlessEdge />
       <KnowledgeDetail />
       <Stage id="workflows" no="03" small="Handoffs without duplicate work" title="Connect workflows" copy="Information moves completely between the systems involved — and stays with the right customer or project, available to the whole team." src="../../assets/clear-route.jpg" />
       <SystemsDetail />
