@@ -50,7 +50,7 @@ function Final() {
         <span style={{ display: "block", marginBottom: 24, color: "var(--signal)", fontSize: 10, fontWeight: 800, textTransform: "uppercase" }}>A useful first step</span>
         <h2 className="cl-final-h2" style={{ maxWidth: 1020, margin: 0, fontSize: "clamp(54px, 7.5vw, 106px)", fontWeight: 800, lineHeight: 0.89, textTransform: "uppercase" }}>Which workflow costs your team <em style={{ color: "var(--signal)", fontStyle: "normal" }}>unnecessary time</em> every day?</h2>
         <p style={{ maxWidth: 570, margin: "26px 0 30px", color: "rgb(255 255 255 / 74%)", fontSize: 16, lineHeight: 1.55 }}>We look at the specific bottleneck, review the data and systems involved and show what a working workflow could look like.</p>
-        <Button variant="primary" arrow href="mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
+        <Button variant="primary" arrow href="mailto:voigt@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
       </div>
     </section>
   );
@@ -75,8 +75,8 @@ function Footer() {
           </div>
           <div>
             <div style={head}>Contact</div>
-            <a href="mailto:support@eazy.cloud" style={col}>support@eazy.cloud</a>
-            <a href="mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review" style={col}>Review a workflow</a>
+            <a href="mailto:voigt@eazy.cloud" style={col}>voigt@eazy.cloud</a>
+            <a href="mailto:voigt@eazy.cloud?subject=eazy.cloud%20workflow%20review" style={col}>Review a workflow</a>
           </div>
           <div>
             <div style={head}>Legal</div>

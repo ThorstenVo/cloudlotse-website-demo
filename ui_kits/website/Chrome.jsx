@@ -32,7 +32,7 @@ function TopBar({ lang, setLang }) {
         </nav>
         <span className="cl-desktop-actions" style={{ display: "inline-flex", alignItems: "center", gap: 28 }}>
           <LanguageToggle active={lang} onChange={setLang} />
-          <Button variant="outline" href="mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
+          <Button variant="outline" href="mailto:voigt@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
         </span>
 
         {/* Mobile: hamburger toggle (hidden on desktop via mobile.css) */}
@@ -60,7 +60,7 @@ function TopBar({ lang, setLang }) {
         </nav>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 20, marginTop: 28, flexWrap: "wrap" }}>
           <LanguageToggle active={lang} onChange={(v) => { setLang(v); }} />
-          <Button variant="primary" arrow href="mailto:support@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
+          <Button variant="primary" arrow href="mailto:voigt@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
         </div>
       </div>
     </header>
