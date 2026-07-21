@@ -1,0 +1,24 @@
+.privacy-dialog-open { overflow: hidden; }
+.privacy-dialog-backdrop { position: fixed; z-index: 10000; inset: 0; display: grid; align-items: end; padding: 24px; background: rgb(0 0 0 / 58%); }
+.privacy-dialog { width: min(760px, 100%); margin: 0 auto; padding: 30px; border: 1px solid #303531; background: #050605; color: #f3f4f0; box-shadow: 0 22px 64px rgb(0 0 0 / 55%); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; }
+.privacy-dialog__kicker { margin: 0 0 10px; color: #ff6a3b; font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.privacy-dialog h2 { max-width: 620px; margin: 0 0 14px; color: #fff; font-size: clamp(25px, 4vw, 40px); line-height: 1; text-transform: uppercase; }
+.privacy-dialog p { max-width: 650px; margin: 0; color: #aeb6af; font-size: 15px; line-height: 1.6; }
+.privacy-dialog__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.privacy-dialog button { min-height: 44px; padding: 11px 16px; border: 1px solid #ff6a3b; border-radius: 0; background: #ff6a3b; color: #101411; font: inherit; font-size: 11px; font-weight: 800; cursor: pointer; text-transform: uppercase; }
+.privacy-dialog button:hover { background: #ff805b; }
+.privacy-dialog button:focus-visible, [data-privacy-settings]:focus-visible { outline: 3px solid #b6ed6f; outline-offset: 3px; }
+.privacy-dialog button.privacy-dialog__secondary { border-color: #aeb6af; background: transparent; color: #f3f4f0; }
+.privacy-dialog button.privacy-dialog__text-action { border-color: transparent; background: transparent; color: #aeb6af; text-decoration: underline; text-underline-offset: 3px; }
+.privacy-setting { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 20px; padding: 18px 0; border-top: 1px solid #303531; color: #f3f4f0; }
+.privacy-setting strong, .privacy-setting span { display: block; }
+.privacy-setting strong { margin-bottom: 5px; font-size: 14px; text-transform: uppercase; }
+.privacy-setting span span { color: #aeb6af; font-size: 12px; line-height: 1.4; }
+.privacy-setting__status { color: #b6ed6f; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+.privacy-setting input { width: 24px; height: 24px; accent-color: #ff6a3b; }
+@media (max-width: 720px) {
+  .privacy-dialog-backdrop { padding: 0; }
+  .privacy-dialog { padding: 24px; border-width: 1px 0 0; }
+  .privacy-dialog__actions { display: grid; grid-template-columns: 1fr; }
+  .privacy-dialog button { width: 100%; }
+}
