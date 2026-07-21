@@ -31,6 +31,11 @@
       .content strong { color:#fff; }
       .content a:hover { color:var(--signal); }
       footer { padding:28px 0; border-top:1px solid var(--line); color:#89918c; font-size:10px; }
+      .legal-nav { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px 28px; }
+      .legal-nav__links { display:flex; flex-wrap:wrap; gap:18px; }
+      .legal-nav a, .legal-nav button { color:#aeb6af; font:inherit; font-weight:700; text-decoration:none; text-transform:uppercase; }
+      .legal-nav button { padding:0; border:0; background:transparent; cursor:pointer; }
+      .legal-nav a:hover, .legal-nav button:hover { color:var(--signal); }
       @media (max-width:720px) {
         main { padding:64px 0 84px; }
         .grid { grid-template-columns:1fr; gap:16px; }
@@ -89,7 +94,15 @@
       </section>
     </main>
     <footer>
-      <div class="shell">© 2026 cloudlotse OÜ</div>
+      <div class="shell legal-nav">
+        <span>© 2026 cloudlotse OÜ</span>
+        <div class="legal-nav__links">
+          <a href="./" aria-current="page">Legal notice</a>
+          <a href="../privacy/">Privacy</a>
+          <span>EU data processing — in preparation</span>
+          <button type="button" data-privacy-settings>Privacy settings</button>
+        </div>
+      </div>
     </footer>
     <script src="../privacy/analytics-config.js"></script>
     <script defer src="../privacy/consent.js"></script>

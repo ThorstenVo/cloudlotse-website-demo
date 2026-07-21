@@ -86,8 +86,9 @@ function Footer() {
           <div>
             <div style={head}>Legal</div>
             <a href="../../legal/" style={col}>Legal notice</a>
-            <a href="#" style={col}>Privacy</a>
-            <a href="#" style={col}>EU data processing</a>
+            <a href="../../privacy/" style={col}>Privacy</a>
+            <span style={col}>EU data processing — in preparation</span>
+            <button type="button" data-privacy-settings="" style={{ ...col, border: 0, background: "transparent", cursor: "pointer", textAlign: "left" }}>Privacy settings</button>
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 30, paddingTop: 26, fontSize: 10, fontWeight: 650 }}>
