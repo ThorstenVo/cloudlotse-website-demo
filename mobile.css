@@ -32,8 +32,12 @@
 
   /* ---- Hero ---- */
   .cl-hero { height: auto !important; min-height: 0 !important; max-height: none !important;
-    padding: 116px 0 64px !important; }
-  .cl-docstream { display: none !important; }
+    padding: 116px 0 300px !important; }
+  /* Keep the floating-document animation on mobile, moved below the copy as an
+     accent (it would collide with the full-width headline otherwise). */
+  .cl-docstream { display: block !important;
+    top: auto !important; bottom: 12px !important; right: 50% !important;
+    transform: translateX(50%) scale(0.62) !important; transform-origin: bottom center; }
   .cl-hero-content { position: static !important; width: 100% !important; transform: none !important; }
   .cl-hero-h1 { font-size: clamp(40px, 12vw, 66px) !important; }
   .cl-hero-cta { flex-direction: column !important; align-items: flex-start !important; gap: 22px !important; }
