@@ -1,0 +1,45 @@
+:root {
+  /* ---- Core neutrals ---- */
+  --ink: #101411;          /* near-black brand ink, primary text on light */
+  --paper: #f3f4f0;        /* warm off-white primary surface */
+  --white: #fff;
+  --muted: #68716b;        /* muted grey for labels / meta */
+  --line: #b8c0ba;         /* hairline border on light surfaces */
+
+  /* ---- Signal (the one accent) ---- */
+  --signal: #ff6a3b;       /* CloudLotse orange — kickers, CTAs, active state */
+  --signal-hover: #ff805b; /* lighter orange on hover */
+  --signal-ink: #6b2a18;   /* deep burnt tone for text on orange */
+
+  /* ---- Dark surfaces (full-bleed sections / footer) ---- */
+  --dark-1: #070807;       /* stage / gallery base */
+  --dark-2: #050605;       /* hero / final / footer base */
+  --dark-nav: #0a0c0a;     /* sticky chapter nav (rgb 10 12 10 / 97%) */
+
+  /* ---- Borders on dark ---- */
+  --line-dark: #343a36;    /* hairline on dark chrome */
+  --line-dark-soft: #303531;
+  --line-dark-softer: #313733;
+
+  /* ---- Text greys (light surfaces, descending contrast) ---- */
+  --text-strong: var(--ink);
+  --text-body: #4d5650;
+  --text-body-2: #555e58;
+  --text-body-3: #59625c;
+  --text-meta: #6c756f;
+  --text-faint: #64706a;
+
+  /* ---- Text on dark ---- */
+  --on-dark: #fff;
+  --on-dark-80: rgb(255 255 255 / 80%);
+  --on-dark-74: rgb(255 255 255 / 74%);
+  --on-dark-72: rgb(255 255 255 / 72%);
+  --on-dark-62: rgb(255 255 255 / 62%);
+  --on-dark-muted: #8f9892;
+  --on-dark-muted-2: #9da59f;
+
+  /* ---- Semantic ---- */
+  --success: #1e7350;      /* "after / with flow" green in time bars */
+
+  color-scheme: light;
+}

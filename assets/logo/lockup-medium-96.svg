@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="378" height="96" viewBox="0 0 472 120" role="img" aria-label="CloudLotse">
+  <rect x="13" y="13" width="74" height="74" rx="24" fill="none" stroke="#1e7350" stroke-width="5"></rect>
+  <path d="M33 36 L48 50 L33 64" fill="none" stroke="#8fd14f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+  <path d="M49 36 L64 50 L49 64" fill="none" stroke="#35a06a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+  <text x="118" y="82" font-family="&#39;Helvetica Neue&#39;, Helvetica, Arial, sans-serif" font-weight="800" font-size="62" letter-spacing="-0.6" fill="#101411">CloudLotse</text>
+</svg>

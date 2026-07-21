@@ -1,0 +1,72 @@
+<!-- dsCard group="Website" viewport="1400x820" name="Marketing homepage" subtitle="Full CloudLotse long-scroll site recreation" -->
+<!-- startingPoint section="Website" subtitle="CloudLotse marketing homepage — full long-scroll page" viewport="1400x900" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudLotse — Intelligent workflows. Clear paths.</title>
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#070807;color:var(--ink);font-family:var(--font-sans)}img{display:block;max-width:100%}</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="Chrome.jsx" data-presets="react"></script>
+<script type="text/babel" src="Hero.jsx" data-presets="react"></script>
+<script type="text/babel" src="Chapters.jsx" data-presets="react"></script>
+<script type="text/babel" src="Closing.jsx" data-presets="react"></script>
+<script type="text/babel" src="tweaks-panel.jsx" data-presets="react"></script>
+<script type="text/babel" data-presets="react">
+function Site() {
+  const { TopBar, Hero, Intro, Chapters, Trust, Final, Footer, useTweaks, TweaksPanel, TweakSection, TweakSlider } = window;
+  const [lang, setLang] = React.useState("EN");
+  const [active, setActive] = React.useState("tasks");
+  const [t, setTweak] = useTweaks({ flareStrength: 0.85, flareSeconds: 8 });
+  React.useEffect(() => {
+    const r = document.documentElement.style;
+    r.setProperty("--cl-flare-peak", String(t.flareStrength));
+    r.setProperty("--cl-flare-dur", t.flareSeconds + "s");
+  }, [t.flareStrength, t.flareSeconds]);
+  React.useEffect(() => {
+    const stages = [...document.querySelectorAll("[data-chapter]")];
+    if (!("IntersectionObserver" in window) || !stages.length) return;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) setActive(e.target.id);
+      }
+    }, { rootMargin: "-34% 0px -52% 0px", threshold: 0 });
+    stages.forEach((s) => io.observe(s));
+    return () => io.disconnect();
+  }, []);
+  return (
+    <main style={{ minHeight: "100vh", overflow: "hidden", background: "var(--paper)" }}>
+      <div style={{ position: "relative" }}>
+        <TopBar lang={lang} setLang={setLang} />
+        <Hero />
+      </div>
+      <Intro />
+      <Chapters active={active} setActive={setActive} />
+      <Trust />
+      <Final />
+      <Footer />
+      <TweaksPanel>
+        <TweakSection label="Background route flare" />
+        <TweakSlider label="Strength" value={t.flareStrength} min={0.3} max={1} step={0.01} onChange={(v) => setTweak("flareStrength", v)} />
+        <TweakSlider label="Cycle (slower →)" value={t.flareSeconds} min={4} max={16} step={0.5} unit="s" onChange={(v) => setTweak("flareSeconds", v)} />
+      </TweaksPanel>
+    </main>
+  );
+}
+function mount() {
+  if (!window.Footer || !window.Chapters || !window.Hero || !window.TopBar || !window.useTweaks) return setTimeout(mount, 40);
+  ReactDOM.createRoot(document.getElementById("root")).render(<Site />);
+}
+mount();
+</script>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#050605"/><g transform="translate(24,24) scale(0.52)"><rect x="13" y="13" width="74" height="74" rx="24" fill="none" stroke="#3fbf7a" stroke-width="5"/><path d="M33 36 L48 50 L33 64" fill="none" stroke="#b6ed6f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M49 36 L64 50 L49 64" fill="none" stroke="#5fd08f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g></svg></template>
+</body>
+</html>
