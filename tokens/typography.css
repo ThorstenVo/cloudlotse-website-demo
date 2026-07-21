@@ -1,0 +1,51 @@
+:root {
+  /* CloudLotse uses a single grotesque system stack — no webfonts.
+     Weight and case (heavy + UPPERCASE) carry the identity. */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: var(--font-sans);
+
+  /* ---- Weights (the brand leans heavy) ---- */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 650; /* @kind font */
+  --fw-semibold: 700; /* @kind font */
+  --fw-bold: 750; /* @kind font */
+  --fw-heavy: 800; /* @kind font */
+
+  /* ---- Display / headline sizes (fluid clamps from the site) ---- */
+  --fs-hero: clamp(58px, 7.5vw, 112px); /* @kind font */
+  --fs-display: clamp(52px, 7.5vw, 106px); /* @kind font */
+  --fs-stage: clamp(56px, 8vw, 112px); /* @kind font */
+  --fs-stage-no: clamp(72px, 10vw, 150px); /* @kind font */
+  --fs-h3: clamp(38px, 5.2vw, 72px); /* @kind font */
+  --fs-gallery: clamp(46px, 6.7vw, 92px); /* @kind font */
+  --fs-trust: clamp(43px, 5.6vw, 78px); /* @kind font */
+
+  /* ---- Fixed heading steps ---- */
+  --fs-h4: 34px; /* @kind font */
+  --fs-title: 27px; /* @kind font */
+  --fs-lead: 24px; /* @kind font */
+
+  /* ---- Body & UI ---- */
+  --fs-body: 16px; /* @kind font */
+  --fs-body-sm: 15px; /* @kind font */
+  --fs-body-xs: 14px; /* @kind font */
+  --fs-ui: 11px; /* @kind font */
+  --fs-meta: 10px; /* @kind font */
+  --fs-label: 9px; /* @kind font */
+  --fs-micro: 8px; /* @kind font */
+
+  /* ---- Line heights ---- */
+  --lh-tight: .88; /* @kind other */
+  --lh-display: .9; /* @kind other */
+  --lh-snug: 1.2; /* @kind other */
+  --lh-body: 1.55; /* @kind other */
+  --lh-loose: 1.62; /* @kind other */
+
+  /* ---- Tracking ---- */
+  --tracking-caps: .02em; /* @kind other */
+
+  /* ---- Semantic type aliases ---- */
+  --heading-transform: uppercase; /* @kind other */
+}
+
+body { font-family: var(--font-sans); }

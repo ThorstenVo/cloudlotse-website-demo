@@ -1,0 +1,39 @@
+:root {
+  /* ---- Spacing scale (observed from the site) ---- */
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-18: 18px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-34: 34px;
+  --space-40: 40px;
+  --space-50: 50px;
+  --space-60: 60px;
+  --space-84: 84px;
+
+  /* ---- Section rhythm ---- */
+  --section-pad: 110px;      /* generous top/bottom on light sections */
+  --section-pad-sm: 76px;    /* mobile */
+
+  /* ---- Layout ---- */
+  --shell-max: 1400px;
+  --shell-gutter: 72px;      /* desktop side gutter */
+  --shell-gutter-sm: 40px;
+  --shell-width: min(var(--shell-max), calc(100% - var(--shell-gutter)));
+
+  /* ---- Chrome heights ---- */
+  --topbar-h: 76px;
+  --chapter-h: 74px;
+
+  /* ---- Borders & radius ---- */
+  --border-hair: 1px;
+  --radius: 0;               /* the brand is strictly square — no rounding */
+  --radius-pill: 50%;        /* only used for the numbered step dots */
+
+  /* ---- Elevation (used sparingly, on floating documents) ---- */
+  --shadow-doc: 0 18px 46px rgb(12 16 13 / 16%);
+}
