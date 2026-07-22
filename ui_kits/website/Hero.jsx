@@ -39,7 +39,7 @@ function Hero({ copy }) {
       <span aria-hidden="true" style={{ position: "absolute", zIndex: 1, inset: 0, background: "linear-gradient(90deg, rgb(5 6 5 / 96%) 0%, rgb(5 6 5 / 74%) 42%, rgb(5 6 5 / 10%) 78%)" }} />
       <span aria-hidden="true" style={{ position: "absolute", zIndex: 1, inset: 0, background: "linear-gradient(0deg, rgb(5 6 5 / 42%), transparent 42%)" }} />
       <div style={{ ...shell, position: "relative", height: "100%", zIndex: 2 }}>
-        <div className="cl-hero-content" style={{ position: "absolute", zIndex: 4, top: "50%", left: 0, width: "min(760px, 56vw)", transform: "translateY(-45%)" }}>
+        <div className="cl-hero-content" style={{ position: "absolute", zIndex: 4, top: "50%", left: shell.paddingInline, width: "min(760px, 56vw)", transform: "translateY(-45%)" }}>
           <div style={{ marginBottom: 26 }}><Kicker>{copy.hero.kicker}</Kicker></div>
           <h1 className="cl-hero-h1" style={{ margin: 0, color: "#fff", fontSize: "clamp(58px, 7.5vw, 112px)", fontWeight: 800, lineHeight: 0.88, textTransform: "uppercase" }}>
             {copy.hero.lines.map((line) => <span key={line} style={{ display: "block" }}>{line}</span>)}
@@ -49,7 +49,7 @@ function Hero({ copy }) {
             <Button variant="primary" arrow href={`mailto:voigt@eazy.cloud?subject=${encodeURIComponent(copy.cta.subject)}`}>{copy.cta.label}</Button>
           </div>
         </div>
-        <div className="cl-hero-note" style={{ position: "absolute", zIndex: 4, right: 0, bottom: 28, maxWidth: 320, color: "rgb(255 255 255 / 62%)", fontSize: 9, fontWeight: 750, lineHeight: 1.45, textAlign: "right", textTransform: "uppercase" }}>
+        <div className="cl-hero-note" style={{ position: "absolute", zIndex: 4, right: shell.paddingInline, bottom: 28, maxWidth: 320, color: "rgb(255 255 255 / 62%)", fontSize: 9, fontWeight: 750, lineHeight: 1.45, textAlign: "right", textTransform: "uppercase" }}>
           <b style={{ display: "block", marginBottom: 7, color: "#fff", fontSize: 11 }}>{copy.hero.noteTitle}</b>{copy.hero.noteCopy}
         </div>
       </div>

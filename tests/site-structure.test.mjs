@@ -19,6 +19,31 @@ test("source design preview loads the complete localized bundle chain in order",
   ]);
 });
 
+test("shared page shell uses serialization-safe balanced gutters", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Chrome.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /min\(1400px, calc\(/);
+  assert.match(source, /width: "100%"/);
+  assert.match(source, /maxWidth: 1800/);
+  assert.match(source, /paddingInline: "clamp\(28px, 5vw, 96px\)"/);
+  assert.match(source, /boxSizing: "border-box"/);
+  assert.match(source, /margin: "0 auto"/);
+});
+
+test("locale switch keeps native links as the navigation mechanism", async () => {
+  const source = await readFile(new URL("../ui_kits/website/LocaleSwitch.jsx", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /preventDefault\(|window\.location\.assign/);
+  assert.match(source, /const href = localizedPath\(other\)/);
+  assert.match(source, /saveLocale\(other\)/);
+  assert.match(source, /event\.currentTarget\.href = localizedPath\(other, window\.location\.hash\)/);
+  assert.match(source, /<a href=\{href\} onClick=\{switchLanguage\}/);
+});
+
+test("absolute hero copy honors the shared responsive gutter", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Hero.jsx", import.meta.url), "utf8");
+  assert.match(source, /className="cl-hero-content"[^\n]+left: shell\.paddingInline/);
+  assert.match(source, /className="cl-hero-note"[^\n]+right: shell\.paddingInline/);
+});
+
 test("README describes the root-hosted live production site and functional locale switch", async () => {
   const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
   assert.match(readme, /https:\/\/eazy\.cloud\//);

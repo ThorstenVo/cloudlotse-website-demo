@@ -11,6 +11,7 @@
 ## Global Constraints
 
 - Use `width: 100%`, `maxWidth: 1800`, `paddingInline: "clamp(28px, 5vw, 96px)"`, `boxSizing: "border-box"`, and centered margins for the shared shell.
+- Bind the absolutely positioned hero content and note to `shell.paddingInline`, because absolute children do not consume parent padding.
 - Keep full-bleed images and backgrounds unchanged.
 - Locale links must work without hydration or JavaScript.
 - JavaScript may store the locale and preserve a known hash, but must not cancel native navigation.
@@ -30,7 +31,7 @@
 - Consumes: Source text from `Chrome.jsx` and `LocaleSwitch.jsx`.
 - Produces: Regression contracts for the shared shell and progressive-enhancement locale navigation.
 
-- [ ] **Step 1: Add the shell serialization test**
+- [x] **Step 1: Add the shell serialization test**
 
 ```js
 test("shared page shell uses serialization-safe balanced gutters", async () => {
@@ -44,7 +45,7 @@ test("shared page shell uses serialization-safe balanced gutters", async () => {
 });
 ```
 
-- [ ] **Step 2: Add the native locale-navigation test**
+- [x] **Step 2: Add the native locale-navigation test**
 
 ```js
 test("locale switch keeps native links as the navigation mechanism", async () => {
@@ -57,7 +58,7 @@ test("locale switch keeps native links as the navigation mechanism", async () =>
 });
 ```
 
-- [ ] **Step 3: Run the focused tests and verify RED**
+- [x] **Step 3: Run the focused tests and verify RED**
 
 Run: `node --test tests/site-structure.test.mjs`
 
@@ -80,7 +81,7 @@ Expected: the two new tests fail on the old nested shell formula and imperative 
 - Consumes: Existing `shellStyle`, `saveLocale`, `localizedPath`, and `LocaleSwitch` consumers.
 - Produces: The same global component interfaces with corrected layout and navigation behavior.
 
-- [ ] **Step 1: Replace the shared shell object**
+- [x] **Step 1: Replace the shared shell object**
 
 Use this exact object in `Chrome.jsx`:
 
@@ -94,7 +95,7 @@ const shellStyle = {
 };
 ```
 
-- [ ] **Step 2: Restore native anchor navigation**
+- [x] **Step 2: Restore native anchor navigation**
 
 Use this behavior in `LocaleSwitch.jsx`:
 
@@ -108,13 +109,13 @@ const switchLanguage = (event) => {
 
 Render the inactive language with `href={href}` and `onClick={switchLanguage}`. Do not call `preventDefault()` or any imperative location API.
 
-- [ ] **Step 3: Run focused tests and verify GREEN**
+- [x] **Step 3: Run focused tests and verify GREEN**
 
 Run: `node --test tests/site-structure.test.mjs`
 
 Expected: all site-structure tests pass.
 
-- [ ] **Step 4: Build both localized pages**
+- [x] **Step 4: Build both localized pages**
 
 Run: `npm run build`
 
@@ -137,13 +138,13 @@ Expected: esbuild completes and prerenders `/en/` and `/de/` without errors.
 - Consumes: Generated localized site from Task 2.
 - Produces: Tested, pushed and deployed production files.
 
-- [ ] **Step 1: Run the full verification suite**
+- [x] **Step 1: Run the full verification suite**
 
 Run: `npm test`
 
 Expected: build, all Node tests and `check:site` pass with zero failures.
 
-- [ ] **Step 2: Inspect generated CSS and locale anchors**
+- [x] **Step 2: Inspect generated CSS and locale anchors**
 
 Run:
 
@@ -158,13 +159,13 @@ rg -F 'preventDefault' ui_kits/website/dist/LocaleSwitch.js
 
 Expected: valid shell properties and reciprocal anchors are present in both pages; the final command returns no matches.
 
-- [ ] **Step 3: Run visual and interaction checks**
+- [x] **Step 3: Run visual and interaction checks**
 
 Serve the built repository locally and inspect `/de/` and `/en/` at desktop, tablet and mobile widths. Verify balanced gutters, unchanged full-bleed backgrounds, and English → German plus German → English navigation from both the hamburger menu and footer.
 
 Expected: no text touches a viewport edge and all four mobile switch interactions reach the opposite locale.
 
-- [ ] **Step 4: Review and commit**
+- [x] **Step 4: Review and commit**
 
 Run: `git diff --check && git status --short && git diff --stat && git diff`.
 

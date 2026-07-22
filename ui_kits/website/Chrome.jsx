@@ -2,7 +2,13 @@
 (() => {
 const { Button } = window.CloudLotseDesignSystem_b0c356;
 
-const shellStyle = { width: "min(1400px, calc(100% - clamp(36px, 8vw, 72px)))", margin: "0 auto" };
+const shellStyle = {
+  width: "100%",
+  maxWidth: 1800,
+  margin: "0 auto",
+  paddingInline: "clamp(28px, 5vw, 96px)",
+  boxSizing: "border-box",
+};
 
 const NAV_IDS = ["possibilities", "approach", "contact"];
 
