@@ -56,7 +56,7 @@ function Footer({ locale, copy }) {
   const shell = window.shellStyle;
   const nav = ["possibilities", "approach", "contact"].map((id) => ({ id, label: copy.nav[id] }));
   const mailto = `mailto:voigt@eazy.cloud?subject=${encodeURIComponent(copy.cta.subject)}`;
-  const mark = <img src="../../assets/eazycloud_logo_white.svg" alt="eazy.cloud" style={{ width: 152, height: "auto" }} />;
+  const mark = <img src="../../assets/eazycloud-logo-dark.svg" alt="eazy.cloud" style={{ width: 152, height: "auto" }} />;
   const col = { display: "block", fontSize: 13, fontWeight: 650, padding: "6px 0", color: "#aeb6af", textDecoration: "none" };
   const head = { color: "#fff", fontSize: 9, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 16 };
   return (

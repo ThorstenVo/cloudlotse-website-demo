@@ -38,7 +38,7 @@ function TopBar({ locale, copy }) {
     <header className={"cl-topbar" + (scrolled ? " is-scrolled" : "")} style={{ zIndex: 30, inset: "0 0 auto", color: "#fff", borderBottom: "1px solid rgb(255 255 255 / 24%)" }}>
       <div style={{ ...shellStyle, height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 28 }}>
         <a href="#" aria-label={copy.a11y.home} style={{ display: "inline-flex", alignItems: "center", flex: "0 0 auto" }} onClick={close}>
-          <img src="../../assets/eazycloud_logo_white.svg" alt="eazy.cloud" style={{ width: 148, height: "auto", maxWidth: "42vw" }} />
+          <img src="../../assets/eazycloud-logo-dark.svg" alt="eazy.cloud" style={{ width: 148, height: "auto", maxWidth: "42vw" }} />
         </a>
 
         <nav className="cl-desktop-nav" style={{ display: "flex", alignItems: "center", gap: 28, marginLeft: "auto" }} aria-label={copy.a11y.mainNav}>

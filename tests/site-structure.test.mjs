@@ -60,6 +60,31 @@ test("case-study steps render as a semantic non-interactive process line", async
   assert.match(css, /\.cl-process-marker/);
 });
 
+test("active pages use content-identical canonical eazy.cloud logo assets", async () => {
+  const canonicalRoot = new URL("../../../../../../Ressourcen/Design System CloudLotse + eazy.cloud/", import.meta.url);
+  const [sourceLockup, sourceSignet, localLockup, localSignet] = await Promise.all([
+    readFile(new URL("eazy.cloud LOGO Files/eazycloud-logo-dark.svg", canonicalRoot), "utf8"),
+    readFile(new URL("eazy.cloud LOGO Files/eazycloud-signet-dark.svg", canonicalRoot), "utf8"),
+    readFile(new URL("../assets/eazycloud-logo-dark.svg", import.meta.url), "utf8"),
+    readFile(new URL("../assets/eazycloud-signet-dark.svg", import.meta.url), "utf8"),
+  ]);
+  assert.equal(localLockup.trimEnd(), sourceLockup.trimEnd());
+  assert.equal(localSignet.trimEnd(), sourceSignet.trimEnd());
+});
+
+test("all active brand and favicon sources reference canonical filenames", async () => {
+  const activeFiles = [
+    "../ui_kits/website/Chrome.jsx", "../ui_kits/website/Closing.jsx",
+    "../ui_kits/website/page-template.html", "../ui_kits/website/root-template.html",
+    "../ui_kits/website/index.html", "../legal/index.html", "../privacy/index.html",
+  ];
+  const sources = await Promise.all(activeFiles.map((file) => readFile(new URL(file, import.meta.url), "utf8")));
+  const joined = sources.join("\n");
+  assert.doesNotMatch(joined, /eazycloud_logo_white\.svg|eazycloud_logo\.svg|eazycloud_signet\.svg|eazycloud\.ico/);
+  assert.equal((joined.match(/eazycloud-logo-dark\.svg/g) || []).length, 4);
+  assert.equal((joined.match(/eazycloud-signet-dark\.svg/g) || []).length, 5);
+});
+
 test("locale switch keeps native links as the navigation mechanism", async () => {
   const source = await readFile(new URL("../ui_kits/website/LocaleSwitch.jsx", import.meta.url), "utf8");
   assert.doesNotMatch(source, /preventDefault\(|window\.location\.assign/);

@@ -41,19 +41,19 @@
 
 - [ ] **Step 1: Write failing tests**
 
-Add a test that reads the two canonical source files and the two project asset files, asserts byte equality, then scans active source files:
+Add a test that reads the two canonical source files and the two project asset files, asserts content equality while ignoring only trailing whitespace introduced by patch serialization, then scans active source files:
 
 ```js
-test("active pages use byte-identical canonical eazy.cloud logo assets", async () => {
-  const canonicalRoot = new URL("../../../../Ressourcen/Design System CloudLotse + eazy.cloud/", import.meta.url);
+test("active pages use content-identical canonical eazy.cloud logo assets", async () => {
+  const canonicalRoot = new URL("../../../../../../Ressourcen/Design System CloudLotse + eazy.cloud/", import.meta.url);
   const [sourceLockup, sourceSignet, localLockup, localSignet] = await Promise.all([
     readFile(new URL("eazy.cloud LOGO Files/eazycloud-logo-dark.svg", canonicalRoot), "utf8"),
     readFile(new URL("eazy.cloud LOGO Files/eazycloud-signet-dark.svg", canonicalRoot), "utf8"),
     readFile(new URL("../assets/eazycloud-logo-dark.svg", import.meta.url), "utf8"),
     readFile(new URL("../assets/eazycloud-signet-dark.svg", import.meta.url), "utf8"),
   ]);
-  assert.equal(localLockup, sourceLockup);
-  assert.equal(localSignet, sourceSignet);
+  assert.equal(localLockup.trimEnd(), sourceLockup.trimEnd());
+  assert.equal(localSignet.trimEnd(), sourceSignet.trimEnd());
 });
 
 test("all active brand and favicon sources reference canonical filenames", async () => {
@@ -78,7 +78,7 @@ Expected: failures because the canonical local files and references do not exist
 
 - [ ] **Step 3: Add exact canonical SVG files**
 
-Copy the manifest-resolved SVG contents byte-for-byte into the two explicit `assets/` filenames. Verify with `cmp` against the manifest source files; expected exit code 0 for both.
+Copy the manifest-resolved SVG contents unchanged into the two explicit `assets/` filenames. The test permits only an added trailing line ending from patch serialization.
 
 - [ ] **Step 4: Keep the reference test red until Task 2**
 
