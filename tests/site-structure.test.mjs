@@ -25,7 +25,13 @@ test("README describes the root-hosted live production site and functional local
   assert.doesNotMatch(readme, /thorstenvo\.github\.io\/cloudlotse-website-demo/);
   assert.match(readme, /prerendered language routes/i);
   assert.match(readme, /persists? (the )?(chosen )?language|stores? (the )?(chosen )?language/i);
+  assert.match(readme, /DE\/EN controls link between prerendered \/de\/ and \/en\//i);
+  assert.match(readme, /locale comes from document lang/i);
+  assert.match(readme, /shared copy comes from the validated catalog/i);
   assert.doesNotMatch(readme, /DE\/EN toggle is visual only/i);
+  assert.doesNotMatch(readme, /(?:language\s+)?copy\s+swapp?(?:ing)?\s+(?:is\s+)?not built|copy swap not built/i);
+  assert.doesNotMatch(readme, /`lang`,\s*`activeChapter`|lang state/i);
+  assert.doesNotMatch(readme, /wire copy through i18n/i);
 });
 
 test("package test script rebuilds before generated-page assertions", async () => {

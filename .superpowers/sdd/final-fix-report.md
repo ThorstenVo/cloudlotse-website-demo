@@ -137,3 +137,41 @@ load successfully without console or hydration errors.
 
 None identified. The local server is only a temporary verification process and
 does not alter or deploy project state.
+
+## Follow-up README correction (2026-07-22)
+
+### RED evidence
+
+Extended the existing README structural test before editing the documentation:
+
+```sh
+node --test --test-name-pattern='README describes' tests/site-structure.test.mjs
+```
+
+It failed as expected because the README still described a language toggle with
+`copy swap not built`, listed a transient ``lang`` state, and instructed readers
+to `wire copy through i18n`.
+
+### GREEN evidence
+
+The legacy Interactions and State handoff entries now document the implemented
+behavior: controls link between prerendered `/de/` and `/en/`, preserve allowed
+hashes, persist an explicit choice, derive locale from document lang, and read
+shared copy from the validated catalog.
+
+The regression test now requires those architecture statements and rejects the
+actual legacy phrase patterns. Verification commands and summaries:
+
+```sh
+node --test --test-name-pattern='README describes' tests/site-structure.test.mjs
+# tests 1
+# pass 1
+# fail 0
+
+npm test
+# tests 31
+# pass 31
+# fail 0
+```
+
+No deployment or push was performed.

@@ -80,10 +80,10 @@ These are **design references** (an HTML + React-via-Babel prototype), not produ
 11. **Footer (near-black, big brand):** mark + tagline; columns Navigation / Contact (mailto) / Legal (incl. "EU data processing"); bottom bar © + DE/EN.
 
 ## Interactions
-Chapter scroll-spy + click-scroll; language toggle state (copy swap not built); hero `cl-docmove` loop (freeze under `prefers-reduced-motion`); intro marker 1800ms; final flare `cl-flare` driven by the two CSS vars (exposed as Tweaks "Strength" 0.3–1 and "Cycle" 4–16s). Buttons: primary orange/ink, uppercase 11px/800, square, hover `#ff805b` + `translateY(-2px)` ~180ms; outline = white 72% border on dark; all CTAs are `mailto:`. Motion 150–180ms ease, no bounce/parallax.
+Chapter scroll-spy + click-scroll; DE/EN controls link between prerendered /de/ and /en/ routes, retain recognized section hashes, and persist an explicit language selection; hero `cl-docmove` loop (freeze under `prefers-reduced-motion`); intro marker 1800ms; final flare `cl-flare` driven by the two CSS vars (exposed as Tweaks "Strength" 0.3–1 and "Cycle" 4–16s). Buttons: primary orange/ink, uppercase 11px/800, square, hover `#ff805b` + `translateY(-2px)` ~180ms; outline = white 72% border on dark; all CTAs are `mailto:`. Motion 150–180ms ease, no bounce/parallax.
 
 ## State
-`lang`, `activeChapter` (tasks/knowledge/workflows), intro `activeRow` (0–2), Tweaks `flareStrength`/`flareSeconds`. Static content; wire copy through i18n.
+Locale comes from document lang on each prerendered route; shared copy comes from the validated catalog. Runtime state is `activeChapter` (tasks/knowledge/workflows), intro `activeRow` (0–2), and Tweaks `flareStrength`/`flareSeconds`.
 
 ## Design tokens
 **Colours** Ink `#101411` · Paper `#f3f4f0` · White `#fff` · Signal `#ff6a3b` (hover `#ff805b`, ink-on-signal `#6b2a18`) · Muted `#68716b` · Line `#b8c0ba` · Darks `#070807`/`#050605`/`#0a0c0a` · Dark hairlines `#343a36`/`#303531`/`#26302a` · Text greys `#4d5650`/`#555e58`/`#59625c`/`#6c756f` · Success `#1e7350` · Logo greens `#1e7350`/`#35a06a`/`#8fd14f`, on-dark `#3fbf7a`/`#5fd08f`/`#b6ed6f`.
