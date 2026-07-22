@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import {
   LANGUAGE_PREFERENCE_KEY,
   alternateLocale,
@@ -36,4 +37,13 @@ test("translation catalog is complete and uses a versioned preference key", () =
   const broken = structuredClone(TRANSLATIONS);
   delete broken.de.hero.copy;
   assert.throws(() => validateTranslations(broken), /de\.hero\.copy/);
+});
+
+test("page components consume localized copy instead of owning English UI strings", async () => {
+  const files = ["Chrome.jsx", "Hero.jsx", "Chapters.jsx", "Closing.jsx"];
+  for (const file of files) {
+    const source = await readFile(new URL(`../ui_kits/website/${file}`, import.meta.url), "utf8");
+    assert.match(source, /copy/);
+    assert.doesNotMatch(source, /Review a workflow|What becomes possible|Trust & control|A useful first step/);
+  }
 });

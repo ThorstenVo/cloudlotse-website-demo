@@ -1,6 +1,9 @@
 function Site() {
   const { TopBar, Hero, Intro, Chapters, Trust, Final, Footer } = window;
-  const [lang, setLang] = React.useState("EN");
+  const { normalizeLocale, TRANSLATIONS } = window.EazyCloudI18n;
+  const locale = normalizeLocale(document.documentElement.lang);
+  if (!locale) throw new Error(`Unsupported document locale: ${document.documentElement.lang}`);
+  const copy = TRANSLATIONS[locale];
   const [active, setActive] = React.useState("tasks");
   React.useEffect(() => {
     const stages = [...document.querySelectorAll("[data-chapter]")];
@@ -16,14 +19,14 @@ function Site() {
   return (
     <main style={{ minHeight: "100vh", overflow: "hidden", background: "var(--paper)" }}>
       <div style={{ position: "relative" }}>
-        <TopBar lang={lang} setLang={setLang} />
-        <Hero />
+        <TopBar locale={locale} copy={copy} />
+        <Hero copy={copy} />
       </div>
-      <Intro />
-      <Chapters active={active} setActive={setActive} />
-      <Trust />
-      <Final />
-      <Footer />
+      <Intro copy={copy} />
+      <Chapters copy={copy} active={active} setActive={setActive} />
+      <Trust copy={copy} />
+      <Final copy={copy} />
+      <Footer locale={locale} copy={copy} />
     </main>
   );
 }

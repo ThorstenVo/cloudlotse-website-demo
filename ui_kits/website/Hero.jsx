@@ -30,7 +30,7 @@ function DocStream() {
   );
 }
 
-function Hero() {
+function Hero({ copy }) {
   const shell = window.shellStyle;
   return (
     <section className="cl-hero" style={{ position: "relative", height: "calc(100vh - 58px)", minHeight: 700, maxHeight: 940, overflow: "hidden", isolation: "isolate", color: "#fff", background: "#050605" }}>
@@ -40,32 +40,26 @@ function Hero() {
       <span aria-hidden="true" style={{ position: "absolute", zIndex: 1, inset: 0, background: "linear-gradient(0deg, rgb(5 6 5 / 42%), transparent 42%)" }} />
       <div style={{ ...shell, position: "relative", height: "100%", zIndex: 2 }}>
         <div className="cl-hero-content" style={{ position: "absolute", zIndex: 4, top: "50%", left: 0, width: "min(760px, 56vw)", transform: "translateY(-45%)" }}>
-          <div style={{ marginBottom: 26 }}><Kicker>Intelligence for everyday work</Kicker></div>
+          <div style={{ marginBottom: 26 }}><Kicker>{copy.hero.kicker}</Kicker></div>
           <h1 className="cl-hero-h1" style={{ margin: 0, color: "#fff", fontSize: "clamp(58px, 7.5vw, 112px)", fontWeight: 800, lineHeight: 0.88, textTransform: "uppercase" }}>
-            <span style={{ display: "block" }}>Intelligent</span>
-            <span style={{ display: "block" }}>workflows.</span>
-            <span style={{ display: "block" }}>Clear paths.</span>
+            {copy.hero.lines.map((line) => <span key={line} style={{ display: "block" }}>{line}</span>)}
           </h1>
           <div className="cl-hero-cta" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 30, marginTop: 34, paddingTop: 20, borderTop: "1px solid rgb(255 255 255 / 35%)" }}>
-            <p style={{ flex: "1 1 auto", maxWidth: 560, margin: 0, color: "rgb(255 255 255 / 80%)", fontSize: 16, lineHeight: 1.5 }}>Scattered information becomes an ordered flow — eazy.cloud brings order to the daily data chaos.</p>
-            <Button variant="primary" arrow href="mailto:voigt@eazy.cloud?subject=eazy.cloud%20workflow%20review">Review a workflow</Button>
+            <p style={{ flex: "1 1 auto", maxWidth: 560, margin: 0, color: "rgb(255 255 255 / 80%)", fontSize: 16, lineHeight: 1.5 }}>{copy.hero.copy}</p>
+            <Button variant="primary" arrow href={`mailto:voigt@eazy.cloud?subject=${encodeURIComponent(copy.cta.subject)}`}>{copy.cta.label}</Button>
           </div>
         </div>
         <div className="cl-hero-note" style={{ position: "absolute", zIndex: 4, right: 0, bottom: 28, maxWidth: 320, color: "rgb(255 255 255 / 62%)", fontSize: 9, fontWeight: 750, lineHeight: 1.45, textAlign: "right", textTransform: "uppercase" }}>
-          <b style={{ display: "block", marginBottom: 7, color: "#fff", fontSize: 11 }}>From clutter to clarity</b>Links, PDFs, photos and notes find their place.
+          <b style={{ display: "block", marginBottom: 7, color: "#fff", fontSize: 11 }}>{copy.hero.noteTitle}</b>{copy.hero.noteCopy}
         </div>
       </div>
     </section>
   );
 }
 
-function Intro() {
+function Intro({ copy }) {
   const shell = window.shellStyle;
-  const rows = [
-    { n: "01", head: <>Recognise <em style={{ color: "var(--signal)", fontStyle: "normal" }}>information</em></>, desc: "Requirements, sources and context are captured automatically — nothing has to be searched twice." },
-    { n: "02", head: "Connect knowledge", desc: "Links, PDFs, photos and notes are linked to the right project and made usable." },
-    { n: "03", head: "Prepare work", desc: "A review-ready foundation is assembled. Your team decides — it no longer searches." },
-  ];
+  const rows = copy.intro.rows;
   const [active, setActive] = React.useState(0);
   React.useEffect(() => {
     const id = setInterval(() => setActive((a) => (a + 1) % rows.length), 1800);
@@ -75,16 +69,16 @@ function Intro() {
     <section id="possibilities" style={{ display: "grid", alignItems: "center", padding: "100px 0", background: "var(--paper)" }}>
       <div className="cl-intro-grid" style={{ ...shell, display: "grid", gridTemplateColumns: "minmax(220px, .42fr) minmax(0, 1.58fr)", gap: 60, alignItems: "start" }}>
         <div>
-          <Label>What becomes possible</Label>
-          <h2 style={{ margin: "14px 0 0", color: "var(--ink)", fontSize: "clamp(40px, 4vw, 62px)", fontWeight: 800, lineHeight: 0.9, textTransform: "uppercase" }}>From chaos to <em style={{ color: "var(--signal)", fontStyle: "normal" }}>clarity.</em></h2>
+          <Label>{copy.intro.label}</Label>
+          <h2 style={{ margin: "14px 0 0", color: "var(--ink)", fontSize: "clamp(40px, 4vw, 62px)", fontWeight: 800, lineHeight: 0.9, textTransform: "uppercase" }}>{copy.intro.heading.before}{copy.intro.heading.emphasis && <em style={{ color: "var(--signal)", fontStyle: "normal" }}>{copy.intro.heading.emphasis}</em>}{copy.intro.heading.after}</h2>
         </div>
         <div style={{ borderTop: "1px solid var(--ink)" }}>
-          {rows.map((r, i) => (
-            <div key={r.n} className="cl-intro-row" style={{ position: "relative", display: "grid", gridTemplateColumns: "92px 1fr minmax(0, 320px)", gap: 30, alignItems: "center", padding: "34px 0 34px 22px", borderBottom: "1px solid var(--line)" }}>
+          {rows.map((row, i) => (
+            <div key={i} className="cl-intro-row" style={{ position: "relative", display: "grid", gridTemplateColumns: "92px 1fr minmax(0, 320px)", gap: 30, alignItems: "center", padding: "34px 0 34px 22px", borderBottom: "1px solid var(--line)" }}>
               <span aria-hidden="true" style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 4, background: "var(--signal)", transform: active === i ? "scaleY(1)" : "scaleY(0)", transformOrigin: "top", transition: "transform .4s ease" }} />
-              <span style={{ fontSize: 44, fontWeight: 800, color: "var(--signal)", lineHeight: 1 }}>{r.n}</span>
-              <div style={{ fontSize: "clamp(30px, 3vw, 40px)", fontWeight: 800, textTransform: "uppercase", lineHeight: 0.95, color: "var(--ink)" }}>{r.head}</div>
-              <p style={{ margin: 0, fontSize: 14, lineHeight: 1.55, color: "#555e58" }}>{r.desc}</p>
+              <span style={{ fontSize: 44, fontWeight: 800, color: "var(--signal)", lineHeight: 1 }}>{String(i + 1).padStart(2, "0")}</span>
+              <div style={{ fontSize: "clamp(30px, 3vw, 40px)", fontWeight: 800, textTransform: "uppercase", lineHeight: 0.95, color: "var(--ink)" }}>{row.title.before}{row.title.emphasis && <em style={{ color: "var(--signal)", fontStyle: "normal" }}>{row.title.emphasis}</em>}{row.title.after}</div>
+              <p style={{ margin: 0, fontSize: 14, lineHeight: 1.55, color: "#555e58" }}>{row.copy}</p>
             </div>
           ))}
         </div>

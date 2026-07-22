@@ -5,12 +5,22 @@ import path from "node:path";
 const root = process.cwd();
 const sourceDir = path.join(root, "ui_kits", "website");
 const outDir = path.join(sourceDir, "dist");
-const jsxSources = ["Chrome.jsx", "Hero.jsx", "Chapters.jsx", "Closing.jsx", "app.jsx"];
+const jsxSources = ["LocaleSwitch.jsx", "Chrome.jsx", "Hero.jsx", "Chapters.jsx", "Closing.jsx", "app.jsx"];
 
 await mkdir(outDir, { recursive: true });
 await build({
   entryPoints: [path.join(sourceDir, "vendor-entry.js")],
   outfile: path.join(outDir, "vendor.js"),
+  bundle: true,
+  minify: true,
+  platform: "browser",
+  format: "iife",
+  target: ["es2020"],
+});
+
+await build({
+  entryPoints: [path.join(sourceDir, "i18n-entry.js")],
+  outfile: path.join(outDir, "i18n.js"),
   bundle: true,
   minify: true,
   platform: "browser",
