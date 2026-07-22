@@ -9,8 +9,15 @@ The runnable design draft is published through GitHub Pages at:
 ## Local production build
 
 Run `npm install`, `npm test`, and `npm run build`. Serve the repository root
-and open `/ui_kits/website/`. The production HTML loads only local scripts;
-do not restore runtime Babel or CDN dependencies.
+through HTTP and verify `/`, `/en/`, and `/de/`. These are the generated
+production outputs; they load only local scripts and stylesheets. Do not
+restore runtime Babel or CDN dependencies.
+
+## Source preview (design reference only)
+
+`/ui_kits/website/` is a separate source-preview reference for the design
+handoff. It is not the generated production output and must not be used to
+verify locale routing.
 
 ## Bilingual site build
 

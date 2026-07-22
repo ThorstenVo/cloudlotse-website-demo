@@ -1,12 +1,20 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { assertNoExternalAssets } from "../scripts/check-built-site.mjs";
+
+test("external stylesheet detection rejects href before rel", () => {
+  assert.throws(
+    () => assertNoExternalAssets('<link href="https://cdn.example/site.css" rel="stylesheet">'),
+    /external stylesheet/i,
+  );
+});
 
 test("localized homepages load only local scripts and stylesheets", async () => {
   for (const locale of ["en", "de"]) {
     const html = await readFile(new URL(`../${locale}/index.html`, import.meta.url), "utf8");
     assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
-    assert.doesNotMatch(html, /<link[^>]+rel=["']stylesheet["'][^>]+href=["']https?:\/\//i);
+    assert.doesNotMatch(html, /<link\b(?=[^>]*\brel=["']stylesheet["'])(?=[^>]*\bhref=["']https?:\/\/)[^>]*>/i);
     assert.doesNotMatch(html, /type=["']text\/babel["']/i);
     assert.match(html, /\/ui_kits\/website\/dist\/i18n\.js/);
     assert.match(html, /\/ui_kits\/website\/dist\/app\.js/);

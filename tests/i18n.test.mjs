@@ -94,11 +94,16 @@ test("localized pages publish canonical and alternate metadata", async () => {
   }
 });
 
-test("sitemap lists both language URLs with alternates", async () => {
+test("each localized sitemap record contains the complete reciprocal alternate set", async () => {
   const xml = await readFile(new URL("../sitemap.xml", import.meta.url), "utf8");
   assert.match(xml, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
-  assert.match(xml, /https:\/\/eazy\.cloud\/en\//);
-  assert.match(xml, /https:\/\/eazy\.cloud\/de\//);
-  assert.match(xml, /hreflang="de"/);
-  assert.match(xml, /hreflang="en"/);
+  const records = [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => match[1]);
+
+  for (const locale of ["en", "de"]) {
+    const record = records.find((value) => value.includes(`<loc>https://eazy.cloud/${locale}/</loc>`));
+    assert.ok(record, `missing ${locale} sitemap record`);
+    assert.match(record, /<xhtml:link rel="alternate" hreflang="en" href="https:\/\/eazy\.cloud\/en\/" \/>/);
+    assert.match(record, /<xhtml:link rel="alternate" hreflang="de" href="https:\/\/eazy\.cloud\/de\/" \/>/);
+    assert.match(record, /<xhtml:link rel="alternate" hreflang="x-default" href="https:\/\/eazy\.cloud\/" \/>/);
+  }
 });
