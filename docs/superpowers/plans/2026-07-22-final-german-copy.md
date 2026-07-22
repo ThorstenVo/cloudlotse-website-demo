@@ -169,7 +169,7 @@ git diff bbb365e -- ui_kits/website/translations.mjs | sed -n '/  en: {/,/  de: 
 
 Expected: every German string is present; English copy is unchanged.
 
-- [ ] **Step 3: Review and commit the implementation**
+- [x] **Step 3: Review and commit the implementation**
 
 Run: `git diff --check && git status --short && git diff --stat && git diff`
 
@@ -184,13 +184,13 @@ git commit -m "feat: publish final German website copy"
 
 If `en/index.html` is byte-identical and not listed by Git, omit it from `git add`.
 
-- [ ] **Step 4: Push the committed main branch**
+- [x] **Step 4: Push the committed main branch**
 
 Run: `git push origin main`
 
 Expected: remote `main` advances to the implementation commit, including the three already-local documentation commits.
 
-- [ ] **Step 5: Upload only changed production files**
+- [x] **Step 5: Upload only changed production files**
 
 Use separate wrapper calls for each changed production file:
 
@@ -201,7 +201,7 @@ $HOME/bin/ftp-deploy.sh eazycloud de/index.html /eazy.cloud/de/index.html
 
 If the build changes any additional production bundle referenced by `de/index.html`, upload that explicit file with the same wrapper. Do not upload tests or documentation.
 
-- [ ] **Step 6: Verify the public deployment**
+- [x] **Step 6: Verify the public deployment**
 
 Fetch `https://eazy.cloud/de/` with a cache-busting query and verify HTTP 200 plus the new title, description and visible German CTA. Fetch `https://eazy.cloud/en/` and verify its current English title and CTA remain present. Confirm `/de/` links to `/en/` and `/en/` links to `/de/`.
 
