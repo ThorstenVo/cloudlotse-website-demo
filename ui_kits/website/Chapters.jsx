@@ -187,7 +187,7 @@ function SystemsDetail({ copy }) {
 function Chapters({ copy, active, setActive }) {
   return (
     <>
-      <div style={{ position: "sticky", zIndex: 25, top: 0 }}>
+      <div className="cl-chapter-nav" style={{ position: "sticky", zIndex: 25, top: "var(--topbar-height)" }}>
         <ChapterNav chapters={copy.chapters} active={active} ariaLabel={copy.a11y.chapters} onSelect={(id) => { setActive(id); const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop, behavior: "smooth" }); }} />
       </div>
       <Stage {...copy.chapters[0]} src="../../assets/tasks-digital-workflow.jpg" imageOpacity={0.6} seamlessEdge />

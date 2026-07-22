@@ -29,6 +29,25 @@ test("shared page shell uses serialization-safe balanced gutters", async () => {
   assert.match(source, /margin: "0 auto"/);
 });
 
+test("top bar exposes a compact fixed state after scrolling", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Chrome.jsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
+  assert.match(source, /const \[scrolled, setScrolled\] = React\.useState\(false\)/);
+  assert.match(source, /window\.addEventListener\("scroll", onScroll, \{ passive: true \}\)/);
+  assert.match(source, /className=\{"cl-topbar" \+ \(scrolled \? " is-scrolled" : ""\)\}/);
+  assert.match(css, /\.cl-topbar\s*\{[^}]*position:\s*fixed/s);
+  assert.match(css, /\.cl-topbar\.is-scrolled\s*\{[^}]*--topbar-height:\s*60px/s);
+  assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+});
+
+test("sticky chapter navigation sits below the compact top bar", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
+  assert.match(source, /className="cl-chapter-nav"/);
+  assert.match(css, /\.cl-chapter-nav\s*\{[^}]*top:\s*var\(--topbar-height\)/s);
+  assert.match(css, /\[id\]\s*\{[^}]*scroll-margin-top:/s);
+});
+
 test("locale switch keeps native links as the navigation mechanism", async () => {
   const source = await readFile(new URL("../ui_kits/website/LocaleSwitch.jsx", import.meta.url), "utf8");
   assert.doesNotMatch(source, /preventDefault\(|window\.location\.assign/);

@@ -14,6 +14,7 @@ const NAV_IDS = ["possibilities", "approach", "contact"];
 
 function TopBar({ locale, copy }) {
   const [open, setOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
   const nav = NAV_IDS.map((id) => ({ id, label: copy.nav[id] }));
   const mailto = `mailto:voigt@eazy.cloud?subject=${encodeURIComponent(copy.cta.subject)}`;
   const linkStyle = { color: "rgb(255 255 255 / 72%)", fontSize: 11, fontWeight: 700, textDecoration: "none" };
@@ -24,10 +25,17 @@ function TopBar({ locale, copy }) {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const close = () => setOpen(false);
 
   return (
-    <header className="cl-topbar" style={{ position: "absolute", zIndex: 30, inset: "0 0 auto", height: 76, color: "#fff", borderBottom: "1px solid rgb(255 255 255 / 24%)" }}>
+    <header className={"cl-topbar" + (scrolled ? " is-scrolled" : "")} style={{ zIndex: 30, inset: "0 0 auto", color: "#fff", borderBottom: "1px solid rgb(255 255 255 / 24%)" }}>
       <div style={{ ...shellStyle, height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 28 }}>
         <a href="#" aria-label={copy.a11y.home} style={{ display: "inline-flex", alignItems: "center", flex: "0 0 auto" }} onClick={close}>
           <img src="../../assets/eazycloud_logo_white.svg" alt="eazy.cloud" style={{ width: 148, height: "auto", maxWidth: "42vw" }} />
