@@ -63,3 +63,23 @@ test("chapter navigation uses a catalog-backed localized label instead of the de
   assert.match(source, /aria-label=\{ariaLabel\}/);
   assert.match(source, /ariaLabel=\{copy\.a11y\.chapters\}/);
 });
+
+test("localized build outputs contain matching language and copy", async () => {
+  const en = await readFile(new URL("../en/index.html", import.meta.url), "utf8");
+  const de = await readFile(new URL("../de/index.html", import.meta.url), "utf8");
+  assert.match(en, /<html lang="en">/);
+  assert.match(en, /Intelligent workflows/);
+  assert.match(de, /<html lang="de">/);
+  assert.match(de, /Intelligente Workflows/);
+  assert.doesNotMatch(de, /Review a workflow/);
+  assert.ok((en.match(/<section/g) || []).length >= 10);
+  assert.ok((de.match(/<section/g) || []).length >= 10);
+});
+
+test("root document is a language selector rather than duplicated page content", async () => {
+  const root = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  assert.match(root, /dist\/root-router\.js/);
+  assert.match(root, /href="\/de\/"/);
+  assert.match(root, /href="\/en\/"/);
+  assert.doesNotMatch(root, /id="possibilities"/);
+});

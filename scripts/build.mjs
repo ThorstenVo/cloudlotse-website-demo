@@ -28,6 +28,16 @@ await build({
   target: ["es2020"],
 });
 
+await build({
+  entryPoints: [path.join(sourceDir, "root-router-entry.js")],
+  outfile: path.join(outDir, "root-router.js"),
+  bundle: true,
+  minify: true,
+  platform: "browser",
+  format: "iife",
+  target: ["es2020"],
+});
+
 for (const filename of jsxSources) {
   const source = await readFile(path.join(sourceDir, filename), "utf8");
   const compiled = await transform(source, {
