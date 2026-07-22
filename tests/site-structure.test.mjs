@@ -38,6 +38,7 @@ test("top bar exposes a compact fixed state after scrolling", async () => {
   assert.match(css, /\.cl-topbar\s*\{[^}]*position:\s*fixed/s);
   assert.match(css, /\.cl-topbar\.is-scrolled\s*\{[^}]*--topbar-height:\s*60px/s);
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
+  assert.doesNotMatch(css, /backdrop-filter/, "a filtered header clips its fixed mobile-menu descendant");
 });
 
 test("sticky chapter navigation sits below the compact top bar", async () => {
