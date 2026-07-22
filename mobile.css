@@ -25,7 +25,7 @@
 .cl-topbar.is-scrolled .cl-mobile-menu { top: var(--topbar-height); }
 .cl-chapter-nav { top: var(--topbar-height) !important; }
 .cl-chapter-link { min-height: 88px; padding: 16px 18px; box-sizing: border-box; color: #c4cbc6; }
-.cl-chapter-number { display: block; margin-bottom: 9px; font-size: 11px; font-weight: 800; line-height: 1; color: #8f9892; }
+.cl-chapter-number { display: block; margin-bottom: 9px; font-size: 13px; font-weight: 800; line-height: 1; color: #8f9892; }
 .cl-chapter-title { display: block; font-size: 17px; font-weight: 800; line-height: 1.3; color: #c4cbc6; }
 [id] { scroll-margin-top: calc(var(--topbar-height) + 78px); }
 

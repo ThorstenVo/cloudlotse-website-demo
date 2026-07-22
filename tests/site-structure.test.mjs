@@ -76,7 +76,7 @@ test("chapter navigation uses readable responsive typography", async () => {
   assert.match(source, /className="cl-chapter-number"/);
   assert.match(source, /className="cl-chapter-title"/);
   assert.match(css, /\.cl-chapter-link\s*\{[^}]*min-height:\s*88px/s);
-  assert.match(css, /\.cl-chapter-number\s*\{[^}]*font-size:\s*11px[^}]*color:\s*#8f9892/s);
+  assert.match(css, /\.cl-chapter-number\s*\{[^}]*font-size:\s*13px[^}]*color:\s*#8f9892/s);
   assert.match(css, /\.cl-chapter-title\s*\{[^}]*font-size:\s*17px[^}]*line-height:\s*1\.3[^}]*color:\s*#c4cbc6/s);
   assert.match(css, /@media\s*\(max-width:\s*860px\)[\s\S]*\.cl-chapter-title\s*\{[^}]*font-size:\s*15px/s);
 });
