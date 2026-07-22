@@ -4,6 +4,18 @@ export const KNOWN_HASHES = Object.freeze([
   "#possibilities", "#tasks", "#knowledge", "#workflows", "#approach", "#contact",
 ]);
 
+const INTENTIONALLY_EMPTY_STRING_PATHS = new Set([
+  "intro.heading.after",
+  "intro.rows.0.title.after",
+  "intro.rows.1.title.emphasis",
+  "intro.rows.1.title.after",
+  "intro.rows.2.title.emphasis",
+  "intro.rows.2.title.after",
+  "caseStudy.heading.after",
+  "systems.heading.after",
+  "trust.heading.after",
+]);
+
 export function normalizeLocale(value) {
   if (typeof value !== "string") return null;
   const locale = value.trim().toLowerCase().split("-")[0];
@@ -57,11 +69,28 @@ function compareShape(reference, candidate, path) {
   for (const key of referenceKeys) compareShape(reference[key], candidate[key], `${path}.${key}`);
 }
 
+function validateRequiredStrings(value, locale, path = "") {
+  if (typeof value === "string") {
+    if (value.trim() === "" && !INTENTIONALLY_EMPTY_STRING_PATHS.has(path)) {
+      throw new Error(`Invalid translation at ${locale}.${path}`);
+    }
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => validateRequiredStrings(item, locale, `${path}.${index}`));
+    return;
+  }
+  for (const [key, item] of Object.entries(value)) {
+    validateRequiredStrings(item, locale, path ? `${path}.${key}` : key);
+  }
+}
+
 export function validateTranslations(catalog) {
   const locales = Object.keys(catalog).sort();
   if (locales.join("|") !== [...SUPPORTED_LOCALES].sort().join("|")) {
     throw new Error(`Unsupported translation locales: ${locales.join(", ")}`);
   }
+  for (const locale of SUPPORTED_LOCALES) validateRequiredStrings(catalog[locale], locale);
   compareShape(catalog.en, catalog.de, "de");
   return true;
 }

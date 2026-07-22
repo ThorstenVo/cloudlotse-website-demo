@@ -1,6 +1,42 @@
 /* eazy.cloud website — chapter nav + 4 stage sections + their detail blocks. */
 (() => {
-const { ChapterNav, Label, ProofStep, TimeBar, SystemFlow } = window.CloudLotseDesignSystem_b0c356;
+const { Label, ProofStep, TimeBar, SystemFlow } = window.CloudLotseDesignSystem_b0c356;
+
+function ChapterNav({ chapters = [], active, onSelect, ariaLabel, style }) {
+  return (
+    <nav
+      aria-label={ariaLabel}
+      style={{
+        color: "var(--white)", background: "rgb(10 12 10 / 97%)",
+        borderTop: "1px solid var(--line-dark)", borderBottom: "1px solid var(--line-dark)",
+        fontFamily: "var(--font-sans)", ...style,
+      }}
+    >
+      <div style={{ display: "grid", gridTemplateColumns: `repeat(${chapters.length}, minmax(0,1fr))` }}>
+        {chapters.map((chapter, index) => {
+          const selected = (active ?? chapters[0]?.id) === chapter.id;
+          return (
+            <a
+              key={chapter.id}
+              href={chapter.href || "#"}
+              onClick={(event) => { if (onSelect) { event.preventDefault(); onSelect(chapter.id); } }}
+              style={{
+                minHeight: 74, padding: "15px 18px", textDecoration: "none",
+                color: selected ? "var(--ink)" : "#8f9892",
+                background: selected ? "var(--signal)" : "transparent",
+                borderRight: index < chapters.length - 1 ? "1px solid var(--line-dark)" : "none",
+                transition: "color 180ms ease, background-color 180ms ease",
+              }}
+            >
+              <small style={{ display: "block", marginBottom: 8, fontSize: 8, fontWeight: 800, lineHeight: 1, color: selected ? "#6b2a18" : "#68716b" }}>{chapter.no}</small>
+              <strong style={{ display: "block", fontSize: 11, lineHeight: 1.25 }}>{chapter.title}</strong>
+            </a>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
 
 function Stage({ id, no, small, title, copy, src, alt = "", imageOpacity = 1, seamlessEdge = false, edgeTone = "ink" }) {
   const edgeGradient = edgeTone === "cool"
@@ -152,7 +188,7 @@ function Chapters({ copy, active, setActive }) {
   return (
     <>
       <div style={{ position: "sticky", zIndex: 25, top: 0 }}>
-        <ChapterNav chapters={copy.chapters} active={active} onSelect={(id) => { setActive(id); const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop, behavior: "smooth" }); }} />
+        <ChapterNav chapters={copy.chapters} active={active} ariaLabel={copy.a11y.chapters} onSelect={(id) => { setActive(id); const el = document.getElementById(id); if (el) window.scrollTo({ top: el.offsetTop, behavior: "smooth" }); }} />
       </div>
       <Stage {...copy.chapters[0]} src="../../assets/tasks-digital-workflow.jpg" imageOpacity={0.6} seamlessEdge />
       <CaseDetail copy={copy.caseStudy} />
