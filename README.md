@@ -1,10 +1,10 @@
 # Handoff: eazy.cloud Marketing Website
 
-## Preview
+## Live production site
 
-The runnable design draft is published through GitHub Pages at:
-
-`https://thorstenvo.github.io/cloudlotse-website-demo/`
+The root-hosted production site is published at [https://eazy.cloud/](https://eazy.cloud/).
+The generated paths use root-absolute asset references, so preview it from the
+repository root rather than from a project subpath.
 
 ## Local production build
 
@@ -24,7 +24,9 @@ verify locale routing.
 `npm run build` generates the root language selector as well as the localized
 `/en/` and `/de/` pages. All localized copy lives in
 `ui_kits/website/translations.mjs`; a missing required translation key stops
-the build.
+the build. The DE/EN toggle navigates between these prerendered language routes,
+keeps a recognized section hash, and stores the chosen language for later visits
+to `/`.
 
 For local verification, serve the repository through HTTP and open `/`, `/en/`,
 and `/de/` rather than opening files with `file://`. Deployment artifacts include
@@ -52,11 +54,11 @@ Before enabling analytics:
    legal review before launch.
 
 This repository is a review prototype, not production code. The inert `.txt`
-suffixes from the original handoff archive were removed so GitHub Pages can
-load the React-via-Babel source files directly.
+suffixes from the original handoff archive were removed so the source preview
+can load its React bundles directly over local HTTP.
 
 ## Overview
-Single-page, long-scroll marketing site for **eazy.cloud** — "intelligent workflows that bring order to the daily data chaos." Order: hero → 3-step value prop → chapter nav + 3 service chapters (each a split "stage" + a proof/detail block) → data-sovereignty trust section → final CTA → footer. English copy; DE/EN toggle is visual only (wire to i18n).
+Single-page, long-scroll marketing site for **eazy.cloud** — "intelligent workflows that bring order to the daily data chaos." Order: hero → 3-step value prop → chapter nav + 3 service chapters (each a split "stage" + a proof/detail block) → data-sovereignty trust section → final CTA → footer. Complete English and German copy is generated from one validated catalog.
 
 ## About the design files
 These are **design references** (an HTML + React-via-Babel prototype), not production code. Recreate them in the target codebase's environment (React/Next, Astro, Vue…) using its patterns and build. Styling uses inline styles referencing CSS custom properties in `styles.css`/`tokens/` — map them to your styling system. `_ds_bundle.js` is a **generated** bundle of the primitives; rebuild those as your component set, don't ship it.

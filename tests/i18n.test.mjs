@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import {
+  CHAPTER_IDS,
   LANGUAGE_PREFERENCE_KEY,
   alternateLocale,
   chooseLocale,
@@ -43,6 +44,28 @@ test("translation catalog rejects empty required English strings", () => {
   const broken = structuredClone(TRANSLATIONS);
   broken.en.hero.copy = "";
   assert.throws(() => validateTranslations(broken), /en\.hero\.copy/);
+});
+
+test("translation catalog keeps the stable scroll chapter IDs in every locale", () => {
+  assert.deepEqual(CHAPTER_IDS, ["tasks", "knowledge", "workflows"]);
+  assert.doesNotThrow(() => validateTranslations(TRANSLATIONS));
+  const broken = structuredClone(TRANSLATIONS);
+  broken.de.chapters[1].id = "wissen";
+  assert.throws(() => validateTranslations(broken), /de\.chapters\.1\.id/);
+});
+
+test("localized home link uses the catalogued accessible label", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Chrome.jsx", import.meta.url), "utf8");
+  assert.equal(TRANSLATIONS.en.a11y.home, "eazy.cloud home");
+  assert.equal(TRANSLATIONS.de.a11y.home, "eazy.cloud Startseite");
+  assert.match(source, /aria-label=\{copy\.a11y\.home\}/);
+  assert.doesNotMatch(source, /aria-label="eazy\.cloud home"/);
+});
+
+test("German generated page uses its localized home label", async () => {
+  const html = await readFile(new URL("../de/index.html", import.meta.url), "utf8");
+  assert.match(html, /aria-label="eazy\.cloud Startseite"/);
+  assert.doesNotMatch(html, /aria-label="eazy\.cloud home"/);
 });
 
 test("page components consume localized copy instead of owning English UI strings", async () => {

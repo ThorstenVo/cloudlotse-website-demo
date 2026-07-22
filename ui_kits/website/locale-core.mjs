@@ -3,6 +3,7 @@ export const LANGUAGE_PREFERENCE_KEY = "eazycloud_language_v1";
 export const KNOWN_HASHES = Object.freeze([
   "#possibilities", "#tasks", "#knowledge", "#workflows", "#approach", "#contact",
 ]);
+export const CHAPTER_IDS = Object.freeze(["tasks", "knowledge", "workflows"]);
 
 const INTENTIONALLY_EMPTY_STRING_PATHS = new Set([
   "intro.heading.after",
@@ -92,5 +93,12 @@ export function validateTranslations(catalog) {
   }
   for (const locale of SUPPORTED_LOCALES) validateRequiredStrings(catalog[locale], locale);
   compareShape(catalog.en, catalog.de, "de");
+  for (const locale of SUPPORTED_LOCALES) {
+    catalog[locale].chapters.forEach((chapter, index) => {
+      if (chapter.id !== CHAPTER_IDS[index]) {
+        throw new Error(`Invalid translation at ${locale}.chapters.${index}.id`);
+      }
+    });
+  }
   return true;
 }

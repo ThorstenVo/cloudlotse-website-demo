@@ -1,7 +1,7 @@
 export const TRANSLATIONS = Object.freeze({
   en: {
     meta: { title: "eazy.cloud — Intelligent workflows. Clear paths.", description: "Intelligent workflows that connect information, knowledge and business systems — with control over where data is processed." },
-    a11y: { mainNav: "Main navigation", mobileNav: "Mobile navigation", language: "Language", chapters: "Chapters", openMenu: "Open menu", closeMenu: "Close menu" },
+    a11y: { home: "eazy.cloud home", mainNav: "Main navigation", mobileNav: "Mobile navigation", language: "Language", chapters: "Chapters", openMenu: "Open menu", closeMenu: "Close menu" },
     nav: { possibilities: "Possibilities", approach: "Approach", contact: "Contact" },
     cta: { label: "Review a workflow", subject: "eazy.cloud workflow review" },
     hero: { kicker: "Intelligence for everyday work", lines: ["Intelligent", "workflows.", "Clear paths."], copy: "Scattered information becomes an ordered flow — eazy.cloud brings order to the daily data chaos.", noteTitle: "From clutter to clarity", noteCopy: "Links, PDFs, photos and notes find their place." },
@@ -28,7 +28,7 @@ export const TRANSLATIONS = Object.freeze({
   },
   de: {
     meta: { title: "eazy.cloud — Intelligente Workflows. Klare Wege.", description: "Intelligente Workflows verbinden Informationen, Wissen und Geschäftssysteme — mit Kontrolle darüber, wo Daten verarbeitet werden." },
-    a11y: { mainNav: "Hauptnavigation", mobileNav: "Mobile Navigation", language: "Sprache", chapters: "Kapitel", openMenu: "Menü öffnen", closeMenu: "Menü schließen" },
+    a11y: { home: "eazy.cloud Startseite", mainNav: "Hauptnavigation", mobileNav: "Mobile Navigation", language: "Sprache", chapters: "Kapitel", openMenu: "Menü öffnen", closeMenu: "Menü schließen" },
     nav: { possibilities: "Möglichkeiten", approach: "Ansatz", contact: "Kontakt" },
     cta: { label: "Workflow prüfen lassen", subject: "eazy.cloud Workflow-Prüfung" },
     hero: { kicker: "Intelligenz für den Arbeitsalltag", lines: ["Intelligente", "Workflows.", "Klare Wege."], copy: "Verstreute Informationen werden zu einem geordneten Ablauf — eazy.cloud bringt Struktur in das tägliche Datenchaos.", noteTitle: "Vom Durcheinander zur Klarheit", noteCopy: "Links, PDFs, Fotos und Notizen finden ihren Platz." },

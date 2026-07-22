@@ -23,7 +23,7 @@ function TopBar({ locale, copy }) {
   return (
     <header className="cl-topbar" style={{ position: "absolute", zIndex: 30, inset: "0 0 auto", height: 76, color: "#fff", borderBottom: "1px solid rgb(255 255 255 / 24%)" }}>
       <div style={{ ...shellStyle, height: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 28 }}>
-        <a href="#" aria-label="eazy.cloud home" style={{ display: "inline-flex", alignItems: "center", flex: "0 0 auto" }} onClick={close}>
+        <a href="#" aria-label={copy.a11y.home} style={{ display: "inline-flex", alignItems: "center", flex: "0 0 auto" }} onClick={close}>
           <img src="../../assets/eazycloud_logo_white.svg" alt="eazy.cloud" style={{ width: 148, height: "auto", maxWidth: "42vw" }} />
         </a>
 

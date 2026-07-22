@@ -5,7 +5,7 @@
   "scripts": {
     "build": "node scripts/build.mjs && node scripts/prerender.mjs",
     "check:site": "node scripts/check-built-site.mjs",
-    "test": "node --test tests/*.test.mjs && npm run build && npm run check:site"
+    "test": "npm run build && node --test tests/*.test.mjs && npm run check:site"
   },
   "dependencies": {
     "react": "18.3.1",

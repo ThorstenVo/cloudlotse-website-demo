@@ -1,13 +1,48 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { assertNoExternalAssets } from "../scripts/check-built-site.mjs";
+import { assertLocalizedMetadata, assertNoExternalAssets } from "../scripts/check-built-site.mjs";
+
+test("source design preview loads the complete localized bundle chain in order", async () => {
+  const html = await readFile(new URL("../ui_kits/website/index.html", import.meta.url), "utf8");
+  const sources = [...html.matchAll(/<script\s+src="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(sources.slice(-9), [
+    "dist/vendor.js",
+    "../../_ds_bundle.js",
+    "dist/i18n.js",
+    "dist/LocaleSwitch.js",
+    "dist/Chrome.js",
+    "dist/Hero.js",
+    "dist/Chapters.js",
+    "dist/Closing.js",
+    "dist/app.js",
+  ]);
+});
+
+test("README describes the root-hosted live production site and functional locale switch", async () => {
+  const readme = await readFile(new URL("../README.md", import.meta.url), "utf8");
+  assert.match(readme, /https:\/\/eazy\.cloud\//);
+  assert.doesNotMatch(readme, /thorstenvo\.github\.io\/cloudlotse-website-demo/);
+  assert.match(readme, /prerendered language routes/i);
+  assert.match(readme, /persists? (the )?(chosen )?language|stores? (the )?(chosen )?language/i);
+  assert.doesNotMatch(readme, /DE\/EN toggle is visual only/i);
+});
+
+test("package test script rebuilds before generated-page assertions", async () => {
+  const pkg = JSON.parse(await readFile(new URL("../package.json", import.meta.url), "utf8"));
+  assert.match(pkg.scripts.test, /^npm run build && node --test tests\/\*\.test\.mjs && npm run check:site$/);
+});
 
 test("external stylesheet detection rejects href before rel", () => {
   assert.throws(
     () => assertNoExternalAssets('<link href="https://cdn.example/site.css" rel="stylesheet">'),
     /external stylesheet/i,
   );
+});
+
+test("built-site metadata validator rejects an incorrect localized description", () => {
+  const html = '<html lang="de"><head><title>wrong</title><meta name="description" content="wrong"><link rel="canonical" href="https://eazy.cloud/de/"><link rel="alternate" hreflang="en" href="https://eazy.cloud/en/"><link rel="alternate" hreflang="de" href="https://eazy.cloud/de/"><link rel="alternate" hreflang="x-default" href="https://eazy.cloud/"></head></html>';
+  assert.throws(() => assertLocalizedMetadata(html, "de"), /title/i);
 });
 
 test("localized homepages load only local scripts and stylesheets", async () => {
