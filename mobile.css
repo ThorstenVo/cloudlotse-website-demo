@@ -28,9 +28,38 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cl-topbar, .cl-mobile-menu { transition: none !important; }
-  .cl-process-line::after { transition: none !important; transform: scaleX(1) !important; }
-  .cl-process-marker { transition: none !important; }
+  .cl-process-line::after { animation: none !important; transform: scaleX(1) !important; }
+  .cl-process-marker { animation: none !important; }
   .cl-process-line .cl-process-marker { color: var(--ink); background: var(--signal); }
+}
+
+@keyframes cl-process-progress-x {
+  0% { transform: scaleX(0); }
+  60%, 88% { transform: scaleX(1); }
+  89%, 100% { transform: scaleX(0); }
+}
+
+@keyframes cl-process-progress-y {
+  0% { transform: scaleY(0); }
+  60%, 88% { transform: scaleY(1); }
+  89%, 100% { transform: scaleY(0); }
+}
+
+@keyframes cl-process-marker-1 {
+  0%, 88% { color: var(--ink); background: var(--signal); }
+  89%, 100% { color: #fff; background: var(--ink); }
+}
+
+@keyframes cl-process-marker-2 {
+  0%, 29% { color: #fff; background: var(--ink); }
+  30%, 88% { color: var(--ink); background: var(--signal); }
+  89%, 100% { color: #fff; background: var(--ink); }
+}
+
+@keyframes cl-process-marker-3 {
+  0%, 59% { color: #fff; background: var(--ink); }
+  60%, 88% { color: var(--ink); background: var(--signal); }
+  89%, 100% { color: #fff; background: var(--ink); }
 }
 
 .cl-process-line {
@@ -61,9 +90,8 @@
   background: var(--signal);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 1.5s ease;
 }
-.cl-process-line.is-complete::after { transform: scaleX(1); }
+.cl-process-line.is-active::after { animation: cl-process-progress-x 3s linear infinite; }
 .cl-process-step { position: relative; padding: 0 34px 0 0; }
 .cl-process-marker {
   position: relative;
@@ -77,11 +105,10 @@
   background: var(--ink);
   font-size: 9px;
   font-weight: 800;
-  transition: color .2s ease, background-color .2s ease;
 }
-.cl-process-line.is-complete .cl-process-marker { color: var(--ink); background: var(--signal); }
-.cl-process-step:nth-child(2) .cl-process-marker { transition-delay: .75s; }
-.cl-process-step:nth-child(3) .cl-process-marker { transition-delay: 1.45s; }
+.cl-process-line.is-active .cl-process-step:nth-child(1) .cl-process-marker { animation: cl-process-marker-1 3s linear infinite; }
+.cl-process-line.is-active .cl-process-step:nth-child(2) .cl-process-marker { animation: cl-process-marker-2 3s linear infinite; }
+.cl-process-line.is-active .cl-process-step:nth-child(3) .cl-process-marker { animation: cl-process-marker-3 3s linear infinite; }
 .cl-process-step strong { display: block; margin-top: 22px; font-size: 12px; text-transform: uppercase; }
 .cl-process-step p { max-width: 230px; margin: 8px 0 0; color: #59625c; font-size: 12px; line-height: 1.5; }
 
@@ -145,7 +172,7 @@
   .cl-process-line { grid-template-columns: 1fr; gap: 28px; }
   .cl-process-line::before { top: 15px; bottom: 15px; left: 15px; right: auto; width: 2px; height: auto; }
   .cl-process-line::after { top: 15px; bottom: 15px; left: 15px; right: auto; width: 2px; height: auto; transform: scaleY(0); transform-origin: center top; }
-  .cl-process-line.is-complete::after { transform: scaleY(1); }
+  .cl-process-line.is-active::after { animation-name: cl-process-progress-y; }
   .cl-process-step { min-height: 54px; padding: 0 0 0 52px; }
   .cl-process-marker { position: absolute; left: 0; top: 0; }
   .cl-process-step strong { margin-top: 0; padding-top: 2px; }
