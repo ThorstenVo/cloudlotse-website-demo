@@ -31,6 +31,42 @@
   .cl-topbar, .cl-mobile-menu { transition: none !important; }
 }
 
+.cl-process-line {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.cl-process-line::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  height: 2px;
+  background: var(--line);
+}
+.cl-process-step { position: relative; padding: 0 34px 0 0; }
+.cl-process-marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--ink);
+  font-size: 9px;
+  font-weight: 800;
+}
+.cl-process-step:first-child .cl-process-marker { color: var(--ink); background: var(--signal); }
+.cl-process-step strong { display: block; margin-top: 22px; font-size: 12px; text-transform: uppercase; }
+.cl-process-step p { max-width: 230px; margin: 8px 0 0; color: #59625c; font-size: 12px; line-height: 1.5; }
+
 /* ---- Hamburger icon (always styled; only shown on mobile) ---- */
 .cl-burger-box { position: relative; display: block; width: 22px; height: 16px; }
 .cl-burger-box i { position: absolute; left: 0; width: 100%; height: 2px; background: #fff;
@@ -88,6 +124,11 @@
   .cl-detailhead { grid-template-columns: 1fr !important; gap: 16px !important; margin-bottom: 36px !important; }
   .cl-case-grid { grid-template-columns: 1fr !important; }
   .cl-case-mid { display: none !important; }
+  .cl-process-line { grid-template-columns: 1fr; gap: 28px; }
+  .cl-process-line::before { top: 15px; bottom: 15px; left: 15px; right: auto; width: 2px; height: auto; }
+  .cl-process-step { min-height: 54px; padding: 0 0 0 52px; }
+  .cl-process-marker { position: absolute; left: 0; top: 0; }
+  .cl-process-step strong { margin-top: 0; padding-top: 2px; }
 
   /* ---- Knowledge collage: drop floating docs, answer becomes a static card ---- */
   .cl-know-stage { height: auto !important; border: none !important; margin-top: 22px !important; }

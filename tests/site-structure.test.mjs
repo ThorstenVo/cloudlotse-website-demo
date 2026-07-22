@@ -48,6 +48,17 @@ test("sticky chapter navigation sits below the compact top bar", async () => {
   assert.match(css, /\[id\]\s*\{[^}]*scroll-margin-top:/s);
 });
 
+test("case-study steps render as a semantic non-interactive process line", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
+  assert.match(source, /<ol className="cl-process-line"/);
+  assert.match(source, /<li key=\{step\.title\} className="cl-process-step"/);
+  assert.match(source, /step\.copy/);
+  assert.doesNotMatch(source, /cl-process-step[^\n]+onClick=/);
+  assert.match(css, /\.cl-process-line::before/);
+  assert.match(css, /\.cl-process-marker/);
+});
+
 test("locale switch keeps native links as the navigation mechanism", async () => {
   const source = await readFile(new URL("../ui_kits/website/LocaleSwitch.jsx", import.meta.url), "utf8");
   assert.doesNotMatch(source, /preventDefault\(|window\.location\.assign/);

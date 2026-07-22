@@ -23,6 +23,19 @@ test("browser languages choose German only when German is preferred before Engli
   assert.equal(chooseLocale(null, []), "en");
 });
 
+test("case-study process steps provide localized titles and supporting copy", () => {
+  for (const locale of ["en", "de"]) {
+    const steps = TRANSLATIONS[locale].caseStudy.steps;
+    assert.equal(steps.length, 3);
+    for (const step of steps) {
+      assert.equal(typeof step.title, "string");
+      assert.ok(step.title.length > 0);
+      assert.equal(typeof step.copy, "string");
+      assert.ok(step.copy.length > 0);
+    }
+  }
+});
+
 test("locale helpers alternate languages and preserve only known hashes", () => {
   assert.equal(alternateLocale("en"), "de");
   assert.equal(alternateLocale("de"), "en");

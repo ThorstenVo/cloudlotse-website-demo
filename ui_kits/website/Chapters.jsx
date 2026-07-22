@@ -99,13 +99,15 @@ function CaseDetail({ copy }) {
           <b style={{ fontSize: 44, fontWeight: 800, color: "var(--signal)" }}>−81%</b>
           <span style={{ fontSize: 13, color: "#555e58", fontWeight: 700 }}>{copy.saving}</span>
         </div>
-        <div style={{ display: "flex", gap: 10, marginTop: 26 }}>
-          {copy.steps.map((title, index) => (
-            <div key={title} style={{ flex: 1, padding: "12px 14px", background: "#fff", border: "1px solid var(--line)", fontSize: 11, fontWeight: 800, textTransform: "uppercase" }}>
-              <small style={{ display: "block", color: "var(--signal)", fontSize: 8, marginBottom: 5 }}>{String(index + 1).padStart(2, "0")}</small>{title}
-            </div>
+        <ol className="cl-process-line" aria-label={copy.processLabel}>
+          {copy.steps.map((step, index) => (
+            <li key={step.title} className="cl-process-step">
+              <span className="cl-process-marker">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{step.title}</strong>
+              <p>{step.copy}</p>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
