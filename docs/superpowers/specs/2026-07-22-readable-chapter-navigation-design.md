@@ -10,11 +10,11 @@ Improve the readability of the three-part sticky chapter navigation without chan
 ## Design
 
 - Increase chapter titles from 11 px to 17 px on desktop.
-- Increase chapter numbers from 8 px to 11 px.
+- Increase chapter numbers from 8 px to 13 px so they remain clearly subordinate to, but visually balanced with, the 17 px titles.
 - Increase each navigation item from a 74 px to an 88 px minimum height and adjust vertical padding to keep the larger type balanced.
 - Use a 1.3 title line height and preserve the existing font weight.
 - Raise the contrast of inactive title and number colors while keeping the active orange treatment unchanged.
-- At widths up to 860 px, reduce chapter titles to 15 px while retaining 11 px numbers and the three-column layout.
+- At widths up to 860 px, reduce chapter titles to 15 px while retaining 13 px numbers and the three-column layout.
 - Preserve keyboard behavior, semantic navigation, sticky positioning and all localized copy.
 
 ## Verification
