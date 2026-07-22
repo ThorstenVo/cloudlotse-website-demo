@@ -81,6 +81,22 @@ test("chapter navigation uses readable responsive typography", async () => {
   assert.match(css, /@media\s*\(max-width:\s*860px\)[\s\S]*\.cl-chapter-title\s*\{[^}]*font-size:\s*15px/s);
 });
 
+test("page shell cache-busts chapter markup and its stylesheet with one revision", async () => {
+  const files = [
+    "../ui_kits/website/page-template.html",
+    "../en/index.html",
+    "../de/index.html",
+  ];
+
+  for (const file of files) {
+    const html = await readFile(new URL(file, import.meta.url), "utf8");
+    const cssRevision = html.match(/href="\/mobile\.css\?v=([^"]+)"/)?.[1];
+    const chapterRevision = html.match(/src="\/ui_kits\/website\/dist\/Chapters\.js\?v=([^"]+)"/)?.[1];
+    assert.ok(cssRevision, `${file} must version mobile.css`);
+    assert.equal(chapterRevision, cssRevision, `${file} must load matching chapter CSS and markup`);
+  }
+});
+
 test("case-study steps render as a semantic non-interactive process line", async () => {
   const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
