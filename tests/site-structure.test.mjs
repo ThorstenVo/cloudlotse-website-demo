@@ -1,7 +1,27 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
+import { dirname, join, parse } from "node:path";
+import { fileURLToPath } from "node:url";
 import { assertLocalizedMetadata, assertNoExternalAssets } from "../scripts/check-built-site.mjs";
+
+async function findCanonicalLogoRoot() {
+  let current = dirname(fileURLToPath(import.meta.url));
+  const relativeRoot = join("Ressourcen", "Design System CloudLotse + eazy.cloud", "eazy.cloud LOGO Files");
+
+  while (current !== parse(current).root) {
+    const candidate = join(current, relativeRoot);
+    try {
+      await readFile(join(candidate, "eazycloud-logo-dark.svg"), "utf8");
+      return candidate;
+    } catch (error) {
+      if (error.code !== "ENOENT") throw error;
+    }
+    current = dirname(current);
+  }
+
+  throw new Error("Canonical eazy.cloud logo directory not found in any parent workspace");
+}
 
 test("source design preview loads the complete localized bundle chain in order", async () => {
   const html = await readFile(new URL("../ui_kits/website/index.html", import.meta.url), "utf8");
@@ -61,10 +81,10 @@ test("case-study steps render as a semantic non-interactive process line", async
 });
 
 test("active pages use content-identical canonical eazy.cloud logo assets", async () => {
-  const canonicalRoot = new URL("../../../../../../Ressourcen/Design System CloudLotse + eazy.cloud/", import.meta.url);
+  const canonicalRoot = await findCanonicalLogoRoot();
   const [sourceLockup, sourceSignet, localLockup, localSignet] = await Promise.all([
-    readFile(new URL("eazy.cloud LOGO Files/eazycloud-logo-dark.svg", canonicalRoot), "utf8"),
-    readFile(new URL("eazy.cloud LOGO Files/eazycloud-signet-dark.svg", canonicalRoot), "utf8"),
+    readFile(join(canonicalRoot, "eazycloud-logo-dark.svg"), "utf8"),
+    readFile(join(canonicalRoot, "eazycloud-signet-dark.svg"), "utf8"),
     readFile(new URL("../assets/eazycloud-logo-dark.svg", import.meta.url), "utf8"),
     readFile(new URL("../assets/eazycloud-signet-dark.svg", import.meta.url), "utf8"),
   ]);
