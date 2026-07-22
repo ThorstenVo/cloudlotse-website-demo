@@ -29,7 +29,7 @@
 - Consumes: `TRANSLATIONS.de` from `ui_kits/website/translations.mjs`.
 - Produces: An exact catalog contract for the German fields that differ from the current live copy.
 
-- [ ] **Step 1: Add the failing catalog assertion**
+- [x] **Step 1: Add the failing catalog assertion**
 
 Add this test after the translation completeness test:
 
@@ -54,7 +54,7 @@ test("German catalog contains Thorsten's approved final copy", () => {
       cta: { label: "Arbeitsablauf besprechen", subject: "eazy.cloud Workflow-Prüfung" },
       hero: {
         kicker: "Ordnung für den Arbeitsalltag",
-        lines: ["Weniger suchen.", "Schneller finden."],
+        lines: ["Weniger", "suchen.", "Schneller finden."],
         copy: "Verstreute Informationen werden zu einem geordneten Ablauf — eazy.cloud bringt Struktur in das tägliche Datenchaos.",
         noteTitle: "Alles am richtigen Platz zur richtigen Zeit",
         noteCopy: "Informationen bleiben auffindbar und gehören zum richtigen Vorgang.",
@@ -68,7 +68,7 @@ test("German catalog contains Thorsten's approved final copy", () => {
 });
 ```
 
-- [ ] **Step 2: Run the focused test and verify RED**
+- [x] **Step 2: Run the focused test and verify RED**
 
 Run: `node --test tests/i18n.test.mjs`
 
@@ -89,7 +89,7 @@ Expected: FAIL only for `German catalog contains Thorsten's approved final copy`
 - Consumes: The exact German catalog contract from Task 1.
 - Produces: Updated `TRANSLATIONS.de` values consumed by every existing page component and the prerenderer.
 
-- [ ] **Step 1: Replace only the approved German catalog fields**
+- [x] **Step 1: Replace only the approved German catalog fields**
 
 Set the following exact values in `TRANSLATIONS.de`:
 
@@ -101,7 +101,7 @@ meta: {
 cta: { label: "Arbeitsablauf besprechen", subject: "eazy.cloud Workflow-Prüfung" },
 hero: {
   kicker: "Ordnung für den Arbeitsalltag",
-  lines: ["Weniger suchen.", "Schneller finden."],
+  lines: ["Weniger", "suchen.", "Schneller finden."],
   copy: "Verstreute Informationen werden zu einem geordneten Ablauf — eazy.cloud bringt Struktur in das tägliche Datenchaos.",
   noteTitle: "Alles am richtigen Platz zur richtigen Zeit",
   noteCopy: "Informationen bleiben auffindbar und gehören zum richtigen Vorgang.",
@@ -119,13 +119,13 @@ de.footer.processing = "EU-Datenverarbeitung in Vorbereitung";
 
 These assignments describe the exact catalog values; edit the existing object literal rather than adding runtime assignments.
 
-- [ ] **Step 2: Run the focused test and verify GREEN**
+- [x] **Step 2: Run the focused test and verify GREEN**
 
 Run: `node --test tests/i18n.test.mjs`
 
 Expected: all i18n tests pass.
 
-- [ ] **Step 3: Run the build**
+- [x] **Step 3: Run the build**
 
 Run: `npm run build`
 
@@ -146,13 +146,13 @@ Expected: esbuild completes and prerenders `/en/` and `/de/` without errors.
 - Consumes: The updated catalog and generated static output from Task 2.
 - Produces: A tested git commit, pushed `main`, and the matching live German site.
 
-- [ ] **Step 1: Run the full verification suite**
+- [x] **Step 1: Run the full verification suite**
 
 Run: `npm test`
 
 Expected: build, all Node tests and `check:site` pass with zero failures.
 
-- [ ] **Step 2: Verify required output and English isolation**
+- [x] **Step 2: Verify required output and English isolation**
 
 Run:
 

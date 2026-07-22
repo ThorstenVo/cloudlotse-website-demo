@@ -40,6 +40,39 @@ test("translation catalog is complete and uses a versioned preference key", () =
   assert.throws(() => validateTranslations(broken), /de\.hero\.copy/);
 });
 
+test("German catalog contains Thorsten's approved final copy", () => {
+  const de = TRANSLATIONS.de;
+  assert.deepEqual(
+    {
+      meta: de.meta,
+      cta: de.cta,
+      hero: de.hero,
+      introThirdCopy: de.intro.rows[2].copy,
+      chapterThreeCopy: de.chapters[2].copy,
+      answerLabel: de.knowledge.answerLabel,
+      footerProcessing: de.footer.processing,
+    },
+    {
+      meta: {
+        title: "eazy.cloud — Intelligente Workflows. Finden statt suchen.",
+        description: "Intelligente Workflows verbinden Informationen, Wissen und Geschäftssysteme. So entstehen Workflows, die im Alltag funktionieren. Dabei bleibt unter Kontrolle, wo die Daten verarbeitet werden.",
+      },
+      cta: { label: "Arbeitsablauf besprechen", subject: "eazy.cloud Workflow-Prüfung" },
+      hero: {
+        kicker: "Ordnung für den Arbeitsalltag",
+        lines: ["Weniger", "suchen.", "Schneller finden."],
+        copy: "Verstreute Informationen werden zu einem geordneten Ablauf — eazy.cloud bringt Struktur in das tägliche Datenchaos.",
+        noteTitle: "Alles am richtigen Platz zur richtigen Zeit",
+        noteCopy: "Informationen bleiben auffindbar und gehören zum richtigen Vorgang.",
+      },
+      introThirdCopy: "Eine prüfbare Grundlage entsteht. Die Entscheidung bleibt beim Team. Langes Suchen entfällt.",
+      chapterThreeCopy: "Informationen fließen vollständig zwischen den beteiligten Systemen — und bleiben beim richtigen Kunden oder Projekt für das gesamte Team verfügbar.",
+      answerLabel: "Aus den Aventa-Unterlagen",
+      footerProcessing: "EU-Datenverarbeitung in Vorbereitung",
+    },
+  );
+});
+
 test("translation catalog rejects empty required English strings", () => {
   const broken = structuredClone(TRANSLATIONS);
   broken.en.hero.copy = "";
