@@ -12,6 +12,19 @@ Run `npm install`, `npm test`, and `npm run build`. Serve the repository root
 and open `/ui_kits/website/`. The production HTML loads only local scripts;
 do not restore runtime Babel or CDN dependencies.
 
+## Bilingual site build
+
+`npm run build` generates the root language selector as well as the localized
+`/en/` and `/de/` pages. All localized copy lives in
+`ui_kits/website/translations.mjs`; a missing required translation key stops
+the build.
+
+For local verification, serve the repository through HTTP and open `/`, `/en/`,
+and `/de/` rather than opening files with `file://`. Deployment artifacts include
+the root selector, both locale directories, updated shared bundles, and
+`sitemap.xml`. The legal notice and privacy pages remain English by product
+decision.
+
 ## Analytics launch checklist
 
 Analytics is intentionally disabled while `privacy/analytics-config.js`

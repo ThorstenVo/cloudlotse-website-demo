@@ -83,3 +83,22 @@ test("root document is a language selector rather than duplicated page content",
   assert.match(root, /href="\/en\/"/);
   assert.doesNotMatch(root, /id="possibilities"/);
 });
+
+test("localized pages publish canonical and alternate metadata", async () => {
+  for (const locale of ["en", "de"]) {
+    const html = await readFile(new URL(`../${locale}/index.html`, import.meta.url), "utf8");
+    assert.match(html, new RegExp(`<link rel="canonical" href="https://eazy\\.cloud/${locale}/">`));
+    assert.match(html, /hreflang="en" href="https:\/\/eazy\.cloud\/en\//);
+    assert.match(html, /hreflang="de" href="https:\/\/eazy\.cloud\/de\//);
+    assert.match(html, /hreflang="x-default" href="https:\/\/eazy\.cloud\//);
+  }
+});
+
+test("sitemap lists both language URLs with alternates", async () => {
+  const xml = await readFile(new URL("../sitemap.xml", import.meta.url), "utf8");
+  assert.match(xml, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
+  assert.match(xml, /https:\/\/eazy\.cloud\/en\//);
+  assert.match(xml, /https:\/\/eazy\.cloud\/de\//);
+  assert.match(xml, /hreflang="de"/);
+  assert.match(xml, /hreflang="en"/);
+});

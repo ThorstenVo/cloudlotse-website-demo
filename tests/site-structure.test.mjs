@@ -2,12 +2,15 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-test("homepage loads no external scripts or stylesheets", async () => {
-  const html = await readFile(new URL("../ui_kits/website/index.html", import.meta.url), "utf8");
-  assert.doesNotMatch(html, /<(?:script|link)[^>]+(?:src|href)=["']https?:\/\//i);
-  assert.doesNotMatch(html, /type=["']text\/babel["']/i);
-  assert.match(html, /dist\/vendor\.js/);
-  assert.match(html, /dist\/app\.js/);
+test("localized homepages load only local scripts and stylesheets", async () => {
+  for (const locale of ["en", "de"]) {
+    const html = await readFile(new URL(`../${locale}/index.html`, import.meta.url), "utf8");
+    assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
+    assert.doesNotMatch(html, /<link[^>]+rel=["']stylesheet["'][^>]+href=["']https?:\/\//i);
+    assert.doesNotMatch(html, /type=["']text\/babel["']/i);
+    assert.match(html, /\/ui_kits\/website\/dist\/i18n\.js/);
+    assert.match(html, /\/ui_kits\/website\/dist\/app\.js/);
+  }
 });
 
 test("privacy page contains the approved layered disclosures", async () => {
@@ -29,7 +32,7 @@ test("privacy page contains the approved layered disclosures", async () => {
 test("homepage and legal pages expose working privacy navigation", async () => {
   const closing = await readFile(new URL("../ui_kits/website/Closing.jsx", import.meta.url), "utf8");
   const legal = await readFile(new URL("../legal/index.html", import.meta.url), "utf8");
-  assert.match(closing, /href="\.\.\/\.\.\/privacy\/"/);
+  assert.match(closing, /href="\/privacy\/"/);
   assert.match(closing, /data-privacy-settings/);
   assert.match(legal, /href="\.\.\/privacy\/"/);
   assert.match(legal, /data-privacy-settings/);
