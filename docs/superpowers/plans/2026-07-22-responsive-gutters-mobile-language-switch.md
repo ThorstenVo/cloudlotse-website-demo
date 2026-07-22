@@ -176,18 +176,19 @@ git add tests/site-structure.test.mjs ui_kits/website/Chrome.jsx ui_kits/website
 git commit -m "fix: add page gutters and reliable locale links"
 ```
 
-- [ ] **Step 5: Push and deploy explicit production files**
+- [x] **Step 5: Push and deploy explicit production files**
 
 Run `git push origin main`, then upload these files with separate wrapper calls:
 
 ```bash
 $HOME/bin/ftp-deploy.sh eazycloud ui_kits/website/dist/Chrome.js /eazy.cloud/ui_kits/website/dist/Chrome.js
+$HOME/bin/ftp-deploy.sh eazycloud ui_kits/website/dist/Hero.js /eazy.cloud/ui_kits/website/dist/Hero.js
 $HOME/bin/ftp-deploy.sh eazycloud ui_kits/website/dist/LocaleSwitch.js /eazy.cloud/ui_kits/website/dist/LocaleSwitch.js
 $HOME/bin/ftp-deploy.sh eazycloud de/index.html /eazy.cloud/de/index.html
 $HOME/bin/ftp-deploy.sh eazycloud en/index.html /eazy.cloud/en/index.html
 ```
 
-- [ ] **Step 6: Verify production**
+- [x] **Step 6: Verify production**
 
 Fetch both locale pages and both updated bundles with cache-busting query parameters. Confirm HTTP 200, valid gutter styles, reciprocal anchors and absence of `preventDefault` in the live locale bundle. Use a mobile browser viewport to click both directions from the menu and footer.
 
