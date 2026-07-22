@@ -69,6 +69,18 @@ test("sticky chapter navigation sits below the compact top bar", async () => {
   assert.match(css, /\[id\]\s*\{[^}]*scroll-margin-top:/s);
 });
 
+test("chapter navigation uses readable responsive typography", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
+  assert.match(source, /className="cl-chapter-link"/);
+  assert.match(source, /className="cl-chapter-number"/);
+  assert.match(source, /className="cl-chapter-title"/);
+  assert.match(css, /\.cl-chapter-link\s*\{[^}]*min-height:\s*88px/s);
+  assert.match(css, /\.cl-chapter-number\s*\{[^}]*font-size:\s*11px[^}]*color:\s*#8f9892/s);
+  assert.match(css, /\.cl-chapter-title\s*\{[^}]*font-size:\s*17px[^}]*line-height:\s*1\.3[^}]*color:\s*#c4cbc6/s);
+  assert.match(css, /@media\s*\(max-width:\s*860px\)[\s\S]*\.cl-chapter-title\s*\{[^}]*font-size:\s*15px/s);
+});
+
 test("case-study steps render as a semantic non-interactive process line", async () => {
   const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");

@@ -18,18 +18,19 @@ function ChapterNav({ chapters = [], active, onSelect, ariaLabel, style }) {
           return (
             <a
               key={chapter.id}
+              className="cl-chapter-link"
               href={chapter.href || "#"}
               onClick={(event) => { if (onSelect) { event.preventDefault(); onSelect(chapter.id); } }}
               style={{
-                minHeight: 74, padding: "15px 18px", textDecoration: "none",
-                color: selected ? "var(--ink)" : "#8f9892",
+                textDecoration: "none",
+                color: selected ? "var(--ink)" : undefined,
                 background: selected ? "var(--signal)" : "transparent",
                 borderRight: index < chapters.length - 1 ? "1px solid var(--line-dark)" : "none",
                 transition: "color 180ms ease, background-color 180ms ease",
               }}
             >
-              <small style={{ display: "block", marginBottom: 8, fontSize: 8, fontWeight: 800, lineHeight: 1, color: selected ? "#6b2a18" : "#68716b" }}>{chapter.no}</small>
-              <strong style={{ display: "block", fontSize: 11, lineHeight: 1.25 }}>{chapter.title}</strong>
+              <small className="cl-chapter-number" style={{ color: selected ? "#6b2a18" : undefined }}>{chapter.no}</small>
+              <strong className="cl-chapter-title" style={{ color: selected ? "var(--ink)" : undefined }}>{chapter.title}</strong>
             </a>
           );
         })}
