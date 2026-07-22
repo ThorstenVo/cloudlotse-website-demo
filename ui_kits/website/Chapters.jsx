@@ -74,6 +74,28 @@ const em = { color: "var(--signal)", fontStyle: "normal" };
 /* 01 — Take over tasks: case grid with proof steps + time bars */
 function CaseDetail({ copy }) {
   const shell = window.shellStyle;
+  const processRef = React.useRef(null);
+  const [processComplete, setProcessComplete] = React.useState(false);
+
+  React.useEffect(() => {
+    const processLine = processRef.current;
+    if (!processLine) return undefined;
+    if (window.__EAZYCLOUD_PRERENDER__) return undefined;
+    if (typeof IntersectionObserver === "undefined") {
+      setProcessComplete(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setProcessComplete(true);
+      observer.unobserve(processLine);
+    }, { threshold: 0.35 });
+
+    observer.observe(processLine);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section style={{ padding: "104px 0 118px", background: "var(--paper)" }}>
       <div style={shell}>
@@ -99,7 +121,7 @@ function CaseDetail({ copy }) {
           <b style={{ fontSize: 44, fontWeight: 800, color: "var(--signal)" }}>−81%</b>
           <span style={{ fontSize: 13, color: "#555e58", fontWeight: 700 }}>{copy.saving}</span>
         </div>
-        <ol className="cl-process-line" aria-label={copy.processLabel}>
+        <ol ref={processRef} className={"cl-process-line" + (processComplete ? " is-complete" : "")} aria-label={copy.processLabel}>
           {copy.steps.map((step, index) => (
             <li key={step.title} className="cl-process-step">
               <span className="cl-process-marker">{String(index + 1).padStart(2, "0")}</span>

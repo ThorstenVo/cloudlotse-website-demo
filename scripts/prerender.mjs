@@ -44,6 +44,7 @@ for (const locale of locales) {
     { runScripts: "dangerously", pretendToBeVisual: true, virtualConsole }
   );
   const { window } = dom;
+  window.__EAZYCLOUD_PRERENDER__ = true;
 
   for (const src of code) {
     const el = window.document.createElement("script");

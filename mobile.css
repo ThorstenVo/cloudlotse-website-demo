@@ -28,6 +28,9 @@
 
 @media (prefers-reduced-motion: reduce) {
   .cl-topbar, .cl-mobile-menu { transition: none !important; }
+  .cl-process-line::after { transition: none !important; transform: scaleX(1) !important; }
+  .cl-process-marker { transition: none !important; }
+  .cl-process-line .cl-process-marker { color: var(--ink); background: var(--signal); }
 }
 
 .cl-process-line {
@@ -48,6 +51,19 @@
   height: 2px;
   background: var(--line);
 }
+.cl-process-line::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  height: 2px;
+  background: var(--signal);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1.5s ease;
+}
+.cl-process-line.is-complete::after { transform: scaleX(1); }
 .cl-process-step { position: relative; padding: 0 34px 0 0; }
 .cl-process-marker {
   position: relative;
@@ -61,8 +77,11 @@
   background: var(--ink);
   font-size: 9px;
   font-weight: 800;
+  transition: color .2s ease, background-color .2s ease;
 }
-.cl-process-step:first-child .cl-process-marker { color: var(--ink); background: var(--signal); }
+.cl-process-line.is-complete .cl-process-marker { color: var(--ink); background: var(--signal); }
+.cl-process-step:nth-child(2) .cl-process-marker { transition-delay: .75s; }
+.cl-process-step:nth-child(3) .cl-process-marker { transition-delay: 1.45s; }
 .cl-process-step strong { display: block; margin-top: 22px; font-size: 12px; text-transform: uppercase; }
 .cl-process-step p { max-width: 230px; margin: 8px 0 0; color: #59625c; font-size: 12px; line-height: 1.5; }
 
@@ -125,6 +144,8 @@
   .cl-case-mid { display: none !important; }
   .cl-process-line { grid-template-columns: 1fr; gap: 28px; }
   .cl-process-line::before { top: 15px; bottom: 15px; left: 15px; right: auto; width: 2px; height: auto; }
+  .cl-process-line::after { top: 15px; bottom: 15px; left: 15px; right: auto; width: 2px; height: auto; transform: scaleY(0); transform-origin: center top; }
+  .cl-process-line.is-complete::after { transform: scaleY(1); }
   .cl-process-step { min-height: 54px; padding: 0 0 0 52px; }
   .cl-process-marker { position: absolute; left: 0; top: 0; }
   .cl-process-step strong { margin-top: 0; padding-top: 2px; }

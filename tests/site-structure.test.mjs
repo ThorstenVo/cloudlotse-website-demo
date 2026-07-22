@@ -72,12 +72,37 @@ test("sticky chapter navigation sits below the compact top bar", async () => {
 test("case-study steps render as a semantic non-interactive process line", async () => {
   const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
-  assert.match(source, /<ol className="cl-process-line"/);
+  assert.match(source, /<ol[^>]+cl-process-line/);
   assert.match(source, /<li key=\{step\.title\} className="cl-process-step"/);
   assert.match(source, /step\.copy/);
   assert.doesNotMatch(source, /cl-process-step[^\n]+onClick=/);
   assert.match(css, /\.cl-process-line::before/);
   assert.match(css, /\.cl-process-marker/);
+});
+
+test("process line animates once when it enters the viewport", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
+  const prerender = await readFile(new URL("../scripts/prerender.mjs", import.meta.url), "utf8");
+  assert.match(source, /const processRef = React\.useRef\(null\)/);
+  assert.match(source, /const \[processComplete, setProcessComplete\] = React\.useState\(false\)/);
+  assert.match(source, /typeof IntersectionObserver === "undefined"/);
+  assert.match(source, /if \(window\.__EAZYCLOUD_PRERENDER__\) return undefined/);
+  assert.match(source, /new IntersectionObserver/);
+  assert.match(source, /threshold: 0\.35/);
+  assert.match(source, /observer\.unobserve\(processLine\)/);
+  assert.match(source, /observer\.disconnect\(\)/);
+  assert.match(source, /className=\{"cl-process-line" \+ \(processComplete \? " is-complete" : ""\)\}/);
+  assert.match(source, /ref=\{processRef\}/);
+  assert.match(css, /\.cl-process-line::after\s*\{[^}]*background:\s*var\(--signal\)[^}]*transform:\s*scaleX\(0\)[^}]*transform-origin:\s*left center[^}]*transition:\s*transform 1\.5s ease/s);
+  assert.match(css, /\.cl-process-line\.is-complete::after\s*\{[^}]*transform:\s*scaleX\(1\)/s);
+  assert.match(css, /\.cl-process-line\.is-complete \.cl-process-marker\s*\{[^}]*background:\s*var\(--signal\)/s);
+  assert.match(css, /\.cl-process-step:nth-child\(2\) \.cl-process-marker\s*\{[^}]*transition-delay:\s*\.75s/s);
+  assert.match(css, /\.cl-process-step:nth-child\(3\) \.cl-process-marker\s*\{[^}]*transition-delay:\s*1\.45s/s);
+  assert.match(css, /@media\s*\(max-width:\s*860px\)[\s\S]*\.cl-process-line::after\s*\{[^}]*transform:\s*scaleY\(0\)[^}]*transform-origin:\s*center top/s);
+  assert.match(css, /@media\s*\(max-width:\s*860px\)[\s\S]*\.cl-process-line\.is-complete::after\s*\{[^}]*transform:\s*scaleY\(1\)/s);
+  assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*\.cl-process-line::after\s*\{[^}]*transition:\s*none[^}]*transform:\s*scaleX\(1\)/s);
+  assert.match(prerender, /window\.__EAZYCLOUD_PRERENDER__ = true/);
 });
 
 test("active pages use content-identical canonical eazy.cloud logo assets", async () => {
