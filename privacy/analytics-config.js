@@ -1,3 +1,3 @@
 window.EazyCloudAnalyticsConfig = Object.freeze({
-  gtmContainerId: null,
+  gtmContainerId: "GTM-T46ZVKC2",
 });
