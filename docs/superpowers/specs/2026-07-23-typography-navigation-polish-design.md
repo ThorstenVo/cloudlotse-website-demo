@@ -18,10 +18,11 @@ Improve reading hierarchy and navigation affordance across eazy.cloud while pres
 ## Header Logo Spacing
 
 - Increase the unscrolled top bar from 76 px to 92 px.
-- Keep the existing 148 px logo width; the perceived improvement comes from vertical space, not a larger mark.
+- Keep the existing 148 px logo width in the unscrolled header; reduce it to 120 px in the 60 px compact header so the mark is never clipped.
 - Preserve the compact scrolled state at 60 px.
 - Move the closed mobile menu's top edge from 76 px to 92 px; when scrolled, it continues to start below the 60 px compact header.
 - Do not alter the logo asset, horizontal page gutters, navigation spacing, or hero composition.
+- Keep the chapter navigation genuinely sticky by clipping only horizontal main-page overflow; vertical overflow must remain visible.
 
 ## Chapter Navigation Interaction
 

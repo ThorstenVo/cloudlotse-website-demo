@@ -56,29 +56,60 @@ test("top bar exposes a compact fixed state after scrolling", async () => {
   assert.match(source, /window\.addEventListener\("scroll", onScroll, \{ passive: true \}\)/);
   assert.match(source, /className=\{"cl-topbar" \+ \(scrolled \? " is-scrolled" : ""\)\}/);
   assert.match(css, /\.cl-topbar\s*\{[^}]*position:\s*fixed/s);
+  assert.match(css, /\.cl-topbar\s*\{[^}]*height:\s*92px/s);
   assert.match(css, /\.cl-topbar\.is-scrolled\s*\{[^}]*--topbar-height:\s*60px/s);
+  assert.match(css, /\.cl-topbar\.is-scrolled img\s*\{[^}]*width:\s*120px/s);
+  assert.match(css, /\.cl-mobile-menu\s*\{[^}]*top:\s*92px/s);
+  assert.match(css, /\.cl-topbar\.is-scrolled \.cl-mobile-menu\s*\{[^}]*top:\s*var\(--topbar-height\)/s);
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
   assert.doesNotMatch(css, /backdrop-filter/, "a filtered header clips its fixed mobile-menu descendant");
 });
 
 test("sticky chapter navigation sits below the compact top bar", async () => {
   const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
+  const app = await readFile(new URL("../ui_kits/website/app.jsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
   assert.match(source, /className="cl-chapter-nav"/);
   assert.match(css, /\.cl-chapter-nav\s*\{[^}]*top:\s*var\(--topbar-height\)/s);
   assert.match(css, /\[id\]\s*\{[^}]*scroll-margin-top:/s);
+  assert.match(app, /<main style=\{\{[^}]*overflowX:\s*"clip"/s);
+  assert.doesNotMatch(app, /<main style=\{\{[^}]*overflow:\s*"hidden"/s);
 });
 
 test("chapter navigation uses readable responsive typography", async () => {
   const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
   const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
-  assert.match(source, /className="cl-chapter-link"/);
+  assert.match(source, /cl-chapter-link/);
   assert.match(source, /className="cl-chapter-number"/);
   assert.match(source, /className="cl-chapter-title"/);
   assert.match(css, /\.cl-chapter-link\s*\{[^}]*min-height:\s*88px/s);
   assert.match(css, /\.cl-chapter-number\s*\{[^}]*font-size:\s*13px[^}]*color:\s*#8f9892/s);
   assert.match(css, /\.cl-chapter-title\s*\{[^}]*font-size:\s*17px[^}]*line-height:\s*1\.3[^}]*color:\s*#c4cbc6/s);
   assert.match(css, /@media\s*\(max-width:\s*860px\)[\s\S]*\.cl-chapter-title\s*\{[^}]*font-size:\s*15px/s);
+});
+
+test("chapter navigation provides selected, pointer-hover and keyboard-focus states", async () => {
+  const source = await readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8");
+  const css = await readFile(new URL("../mobile.css", import.meta.url), "utf8");
+  assert.match(source, /className=\{"cl-chapter-link" \+ \(selected \? " is-selected" : ""\)\}/);
+  assert.match(css, /\.cl-chapter-link\.is-selected\s*\{/);
+  assert.match(css, /@media\s*\(hover:\s*hover\)\s*and\s*\(pointer:\s*fine\)[\s\S]*\.cl-chapter-link:hover/);
+  assert.match(css, /\.cl-chapter-link:focus-visible\s*\{/);
+  assert.match(css, /\.cl-chapter-link:focus-visible\s*\{[^}]*outline:/s);
+  assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)[\s\S]*\.cl-chapter-link[^}]*transition:\s*none/s);
+});
+
+test("shared lead copy uses the approved typography scale", async () => {
+  const [hero, chapters, closing, css] = await Promise.all([
+    readFile(new URL("../ui_kits/website/Hero.jsx", import.meta.url), "utf8"),
+    readFile(new URL("../ui_kits/website/Chapters.jsx", import.meta.url), "utf8"),
+    readFile(new URL("../ui_kits/website/Closing.jsx", import.meta.url), "utf8"),
+    readFile(new URL("../mobile.css", import.meta.url), "utf8"),
+  ]);
+  assert.equal((hero.match(/className="cl-lead-copy"/g) || []).length, 1);
+  assert.equal((chapters.match(/className="cl-lead-copy"/g) || []).length, 1);
+  assert.equal((closing.match(/className="cl-lead-copy"/g) || []).length, 2);
+  assert.match(css, /\.cl-lead-copy\s*\{[^}]*font-size:\s*18px[^}]*line-height:\s*1\.55/s);
 });
 
 test("page shell cache-busts chapter markup and its stylesheet with one revision", async () => {
@@ -92,8 +123,10 @@ test("page shell cache-busts chapter markup and its stylesheet with one revision
     const html = await readFile(new URL(file, import.meta.url), "utf8");
     const cssRevision = html.match(/href="\/mobile\.css\?v=([^"]+)"/)?.[1];
     const chapterRevision = html.match(/src="\/ui_kits\/website\/dist\/Chapters\.js\?v=([^"]+)"/)?.[1];
+    const appRevision = html.match(/src="\/ui_kits\/website\/dist\/app\.js\?v=([^"]+)"/)?.[1];
     assert.ok(cssRevision, `${file} must version mobile.css`);
     assert.equal(chapterRevision, cssRevision, `${file} must load matching chapter CSS and markup`);
+    assert.equal(appRevision, cssRevision, `${file} must load the matching sticky-layout runtime`);
   }
 });
 

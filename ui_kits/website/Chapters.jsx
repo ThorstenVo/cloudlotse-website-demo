@@ -18,19 +18,17 @@ function ChapterNav({ chapters = [], active, onSelect, ariaLabel, style }) {
           return (
             <a
               key={chapter.id}
-              className="cl-chapter-link"
+              className={"cl-chapter-link" + (selected ? " is-selected" : "")}
               href={chapter.href || "#"}
               onClick={(event) => { if (onSelect) { event.preventDefault(); onSelect(chapter.id); } }}
               style={{
                 textDecoration: "none",
-                color: selected ? "var(--ink)" : undefined,
-                background: selected ? "var(--signal)" : "transparent",
                 borderRight: index < chapters.length - 1 ? "1px solid var(--line-dark)" : "none",
                 transition: "color 180ms ease, background-color 180ms ease",
               }}
             >
-              <small className="cl-chapter-number" style={{ color: selected ? "#6b2a18" : undefined }}>{chapter.no}</small>
-              <strong className="cl-chapter-title" style={{ color: selected ? "var(--ink)" : undefined }}>{chapter.title}</strong>
+              <small className="cl-chapter-number">{chapter.no}</small>
+              <strong className="cl-chapter-title">{chapter.title}</strong>
             </a>
           );
         })}
@@ -49,7 +47,7 @@ function Stage({ id, no, small, title, copy, src, alt = "", imageOpacity = 1, se
         <span style={{ fontSize: "clamp(80px, 9vw, 140px)", fontWeight: 800, color: "var(--signal)", lineHeight: 0.8 }}>{no}</span>
         <small style={{ marginTop: 16, color: "var(--signal)", fontSize: 10, fontWeight: 800, lineHeight: 1, textTransform: "uppercase" }}>{small}</small>
         <h2 style={{ margin: "14px 0 0", color: "#fff", fontSize: "clamp(44px, 4.6vw, 72px)", fontWeight: 800, lineHeight: 0.9, textTransform: "uppercase" }}>{title}</h2>
-        <p style={{ maxWidth: 440, margin: "22px 0 0", color: "rgb(255 255 255 / 74%)", fontSize: 15, lineHeight: 1.55 }}>{copy}</p>
+        <p className="cl-lead-copy" style={{ maxWidth: 440, margin: "22px 0 0", color: "rgb(255 255 255 / 74%)", fontSize: 15, lineHeight: 1.55 }}>{copy}</p>
       </div>
       <div className="cl-stage-media" style={{ position: "relative", overflow: "hidden", background: "var(--ink)" }}>
         <img src={src} alt={alt} loading="lazy" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: imageOpacity, filter: "saturate(.82) contrast(1.03)" }} />

@@ -45,7 +45,7 @@ function Hero({ copy }) {
             {copy.hero.lines.map((line) => <span key={line} style={{ display: "block" }}>{line}</span>)}
           </h1>
           <div className="cl-hero-cta" style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 30, marginTop: 34, paddingTop: 20, borderTop: "1px solid rgb(255 255 255 / 35%)" }}>
-            <p style={{ flex: "1 1 auto", maxWidth: 560, margin: 0, color: "rgb(255 255 255 / 80%)", fontSize: 16, lineHeight: 1.5 }}>{copy.hero.copy}</p>
+            <p className="cl-lead-copy" style={{ flex: "1 1 auto", maxWidth: 560, margin: 0, color: "rgb(255 255 255 / 80%)", fontSize: 16, lineHeight: 1.5 }}>{copy.hero.copy}</p>
             <Button variant="primary" arrow href={`mailto:voigt@eazy.cloud?subject=${encodeURIComponent(copy.cta.subject)}`}>{copy.cta.label}</Button>
           </div>
         </div>

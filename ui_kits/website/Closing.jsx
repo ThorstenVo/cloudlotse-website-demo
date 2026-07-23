@@ -9,7 +9,7 @@ function Trust({ copy }) {
       <div style={shell}>
         <span style={{ color: "var(--signal)", fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: ".04em" }}>{copy.trust.label}</span>
         <h2 style={{ maxWidth: 940, margin: "14px 0 20px", fontSize: "clamp(38px, 4.4vw, 64px)", fontWeight: 800, lineHeight: 0.96, textTransform: "uppercase" }}>{copy.trust.heading.before}{copy.trust.heading.emphasis && <em style={{ color: "var(--signal)", fontStyle: "normal" }}>{copy.trust.heading.emphasis}</em>}{copy.trust.heading.after}</h2>
-        <p style={{ maxWidth: 640, color: "#4d5650", fontSize: 16, lineHeight: 1.6, margin: "0 0 44px" }}>{copy.trust.copy}</p>
+        <p className="cl-lead-copy" style={{ maxWidth: 640, color: "#4d5650", fontSize: 16, lineHeight: 1.6, margin: "0 0 44px" }}>{copy.trust.copy}</p>
         <div className="cl-trust-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)" }}>
           {copy.trust.cards.map((card, i) => (
             <div key={card.title} style={{ padding: "30px 28px", borderLeft: i ? "1px solid var(--line)" : "none" }}>
@@ -45,7 +45,7 @@ function Final({ copy }) {
       <div style={{ ...shell, position: "relative", zIndex: 5 }}>
         <span style={{ display: "block", marginBottom: 24, color: "var(--signal)", fontSize: 10, fontWeight: 800, textTransform: "uppercase" }}>{copy.final.label}</span>
         <h2 className="cl-final-h2" style={{ maxWidth: 1020, margin: 0, fontSize: "clamp(54px, 7.5vw, 106px)", fontWeight: 800, lineHeight: 0.89, textTransform: "uppercase" }}>{copy.final.heading.before}{copy.final.heading.emphasis && <em style={{ color: "var(--signal)", fontStyle: "normal" }}>{copy.final.heading.emphasis}</em>}{copy.final.heading.after}</h2>
-        <p style={{ maxWidth: 570, margin: "26px 0 30px", color: "rgb(255 255 255 / 74%)", fontSize: 16, lineHeight: 1.55 }}>{copy.final.copy}</p>
+        <p className="cl-lead-copy" style={{ maxWidth: 570, margin: "26px 0 30px", color: "rgb(255 255 255 / 74%)", fontSize: 16, lineHeight: 1.55 }}>{copy.final.copy}</p>
         <Button variant="primary" arrow href={`mailto:voigt@eazy.cloud?subject=${encodeURIComponent(copy.cta.subject)}`}>{copy.cta.label}</Button>
       </div>
     </section>

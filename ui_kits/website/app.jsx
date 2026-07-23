@@ -17,7 +17,7 @@ function Site() {
     return () => io.disconnect();
   }, []);
   return (
-    <main style={{ minHeight: "100vh", overflow: "hidden", background: "var(--paper)" }}>
+    <main style={{ minHeight: "100vh", overflowX: "clip", background: "var(--paper)" }}>
       <div style={{ position: "relative" }}>
         <TopBar locale={locale} copy={copy} />
         <Hero copy={copy} />
